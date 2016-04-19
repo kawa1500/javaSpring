@@ -11,7 +11,11 @@
   <div class="logo"></div>
   <div class="login"> 
     <h1>Login to your account</h1>
-	<h3>Dane kontaktowe jakieś trzeba dopisać ${serverTime}</h3>
+	<h3>Aplikacja spółdzielni mieszkaniowej SPRING</br>
+	Dane kontaktowe</br>
+	Jan kowalski</br>
+	Telefon: +48 42 632 00 00</br>
+	Email: biuro.spring@spring.com</h3>
     <form class="form" method="POST" action="">
       <p class="submit"><input type="submit" name="commit" value="Login"></p>			
     </form>
