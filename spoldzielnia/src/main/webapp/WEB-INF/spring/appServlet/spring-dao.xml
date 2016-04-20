@@ -31,12 +31,12 @@
 		</beans:property>
 		<beans:property name="packagesToScan">
 			<beans:list>
-				<beans:value>pl.dmcs.rkotas.domain</beans:value>	
+				<beans:value>com.spoldzielnia.app.model</beans:value>	
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-	<context:component-scan base-package="pl.dmcs.rkotas.dao" />
-  	<context:component-scan base-package="pl.dmcs.rkotas.service" />
+	<context:component-scan base-package="com.spoldzielnia.app.dao" />
+  	<context:component-scan base-package="com.spoldzielnia.app.service" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="hibernateSessionFactory" />
