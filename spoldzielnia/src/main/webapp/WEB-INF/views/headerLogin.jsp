@@ -6,12 +6,6 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 <%@page session="true"%>
 
-	<h3>Aplikacja spółdzielni mieszkaniowej SPRING</br>
-	Dane kontaktowe</br>
-	Jan kowalski</br>
-	Telefon: +48 42 632 00 00</br>
-	Email: biuro.spring@spring.com</h3>
-
 	<c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrt for log out-->
@@ -28,10 +22,10 @@
 	</script>
  
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h2>
+		<h4 style="float: right; right:20%;">
 			Welcome : ${pageContext.request.userPrincipal.name} | <a
 				href="javascript:formSubmit()"> Logout</a>
 				
-		</h2>
+		</h4>
 	</c:if>			
   
