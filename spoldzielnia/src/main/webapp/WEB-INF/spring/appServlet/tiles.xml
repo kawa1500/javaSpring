@@ -33,19 +33,19 @@
     </definition>
     
     <definition name="createBuilding" extends="base.definition">
-        <put-attribute name="title" value="Create User" />
+        <put-attribute name="title" value="Create Building" />
         <put-attribute name="body" value="/WEB-INF/views/createBuilding.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="createFlat" extends="base.definition">
-        <put-attribute name="title" value="Create User" />
+        <put-attribute name="title" value="Create Flat" />
         <put-attribute name="body" value="/WEB-INF/views/createFlat.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="manageUsers" extends="base.definition">
-        <put-attribute name="title" value="Create User" />
+        <put-attribute name="title" value="Manage Users" />
         <put-attribute name="body" value="/WEB-INF/views/manageUsers.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>

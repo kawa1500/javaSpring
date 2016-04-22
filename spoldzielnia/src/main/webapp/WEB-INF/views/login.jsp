@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <head>
   <title>Flat Login Form</title>
@@ -10,7 +10,7 @@
 <body>
   <div class="logo"></div>
   <div class="login"> <!-- Login -->
-    <h1>Login to your account</h1>
+    <h1><spring:message code="login.title"/></h1>
 
 	<c:if test="${not empty error}">
 		<div class="error">${error}</div>
@@ -22,16 +22,16 @@
     <form class="form" method="POST" action="<c:url value='j_spring_security_check' />">
 
       <p class="field">
-        <input type="text" name="login" placeholder="Email address" required/>
+        <input type="text" name="login" placeholder="<spring:message code="login.mail"/>" required/>
         
       </p>
 
       <p class="field">
-        <input type="password" name="password" placeholder="Password" required/>
+        <input type="password" name="password" placeholder="<spring:message code="login.password"/>" required/>
         
       </p>
 
-      <p class="submit"><input type="submit" name="commit" value="Login"></p>
+      <p class="submit"><input type="submit" name="commit" value="<spring:message code="label.login"/>"></p>
 
 	<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />

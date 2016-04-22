@@ -30,7 +30,7 @@
 	</c:if>			
 	<c:if test="${pageContext.request.userPrincipal.name == null}">
 		<h4 style="float: right; right:20%;">
-			Welcome | <a href="/app/admin">Login</a>
+			<spring:message code="home.welcome"/> | <a href="/app/admin"><spring:message code="label.login"/></a>
 				
 		</h4>
 	</c:if>
