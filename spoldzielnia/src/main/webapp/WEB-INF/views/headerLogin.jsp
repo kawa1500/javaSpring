@@ -28,4 +28,10 @@
 				
 		</h4>
 	</c:if>			
+	<c:if test="${pageContext.request.userPrincipal.name == null}">
+		<h4 style="float: right; right:20%;">
+			Welcome | <a href="/app/admin">Login</a>
+				
+		</h4>
+	</c:if>
   
