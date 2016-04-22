@@ -19,6 +19,7 @@ public class User {
 	private String birthDate;
 	private String email;
 	private String phone;
+	private String password;
 	
 	public String getFirstName() {
 		return firstName;
@@ -55,6 +56,18 @@ public class User {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public Integer getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
