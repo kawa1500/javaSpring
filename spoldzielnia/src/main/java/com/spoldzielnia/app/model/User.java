@@ -16,7 +16,6 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private Integer PESEL;
-	private String birthDate;
 	private String email;
 	private String phone;
 	private String password;
@@ -38,12 +37,6 @@ public class User {
 	}
 	public void setPESEL(Integer pESEL) {
 		PESEL = pESEL;
-	}
-	public String getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
 	}
 	public String getEmail() {
 		return email;
