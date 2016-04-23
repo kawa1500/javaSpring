@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC 
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+       
+<tiles-definitions>
+    <definition name="base.definition"
+        template="/WEB-INF/views/layout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+        <put-attribute name="headerLogin" value="/WEB-INF/views/headerLogin.jsp" />
+        <put-attribute name="menu" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+ 
+    <definition name="admin" extends="base.definition">
+        <put-attribute name="title" value="Admin Profile" />
+        <put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="home" extends="base.definition">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+        <put-attribute name="menu" value="" />
+    </definition>
+    
+    <definition name="createUser" extends="base.definition">
+        <put-attribute name="title" value="Create User" />
+        <put-attribute name="body" value="/WEB-INF/views/createUser.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="createBuilding" extends="base.definition">
+        <put-attribute name="title" value="Create Building" />
+        <put-attribute name="body" value="/WEB-INF/views/createBuilding.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="createFlat" extends="base.definition">
+        <put-attribute name="title" value="Create Flat" />
+        <put-attribute name="body" value="/WEB-INF/views/createFlat.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="manageUsers" extends="base.definition">
+        <put-attribute name="title" value="Manage Users" />
+        <put-attribute name="body" value="/WEB-INF/views/manageUsers.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+
+</tiles-definitions>
