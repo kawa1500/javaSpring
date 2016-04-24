@@ -10,7 +10,7 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
-<form:form method="post" action="" >
+<form:form method="post" action="" commandName="user">
     <table>
     <tr>
         <td><form:hidden path="idUser"/>
@@ -41,7 +41,12 @@
     </tr>
     <tr>
         <td>
-            <input type="submit" value="<spring:message code="user.add"/>"/>
+			<c:if test="${user.idUser<=0}">
+            	<input type="submit" value="<spring:message code="user.add"/>"/>
+        	</c:if>
+        	<c:if test="${user.idUser>0}">
+            	<input type="submit" value="<spring:message code="user.edit"/>"/>
+        	</c:if>
         </td>
     </tr>
 </table> 

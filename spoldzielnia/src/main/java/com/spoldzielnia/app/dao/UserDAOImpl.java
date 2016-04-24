@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.spoldzielnia.app.model.User;
 
+@Repository
 public class UserDAOImpl implements UserDAO{
 
 	@Autowired
@@ -26,7 +28,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void removeUser(int id) {
 		User user = getUser(id);
-		if(user.getIdUser()!=null)
+		if(user.getIdUser()!=0)
 		{
 			sessionFactory.getCurrentSession().delete(user);
 		}

@@ -11,11 +11,11 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer idUser;
+	private int idUser;
 	
 	private String firstName;
 	private String lastName;
-	private Integer PESEL;
+	private String PESEL;
 	private String email;
 	private String phone;
 	private String password;
@@ -32,11 +32,11 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Integer getPESEL() {
+	public String getPESEL() {
 		return PESEL;
 	}
-	public void setPESEL(Integer pESEL) {
-		PESEL = pESEL;
+	public void setPESEL(String PESEL) {
+		this.PESEL = PESEL;
 	}
 	public String getEmail() {
 		return email;
@@ -50,10 +50,10 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Integer getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(Integer idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 	public String getPassword() {
@@ -61,6 +61,13 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String result = "name: "+firstName+" ,surname: "+lastName+" ,email: "+email+" ,PESEL: "+PESEL+" ,phone: "+phone+" ,password: "+password;
+		return result;
 	}
 	
 }
