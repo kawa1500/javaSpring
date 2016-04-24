@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.UserService;
+import com.spoldzielnia.app.validators.UserValidator;
 
 /**
  * Handles requests for the application home page.
@@ -26,6 +28,8 @@ public class UsersController {
 	
 	@Autowired
 	UserService userService;
+	
+	UserValidator userValidator = new UserValidator();
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {
@@ -39,7 +43,7 @@ public class UsersController {
 		{
 			user=new User();
 		}
-		System.out.println("wczytywanie usera: "+user.getIdUser());
+		
 		map.put("user", user);
 
 		return "createUser";
@@ -47,18 +51,27 @@ public class UsersController {
 	
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user") User user, Model model) {
-		System.out.println(user.toString());
-		if (user.getIdUser()==0)
+	public String addUser(@ModelAttribute("user") User user, Model model, BindingResult result) {
+		
+		userValidator.validate(user, result);
+		
+		if(result.getErrorCount()==0)
 		{
-			userService.addUser(user);
+			if (user.getIdUser()==0)
+			{
+				userService.addUser(user);
+			}
+			else
+			{
+				userService.editUser(user);
+			}
+			return "redirect:manageUsers";
 		}
 		else
 		{
-			userService.editUser(user);
+			return "createUser";
 		}
-	   
-		return "redirect:manageUsers";
+		
 	}
 	
 	@RequestMapping(value = "/manageUsers", method = RequestMethod.GET)

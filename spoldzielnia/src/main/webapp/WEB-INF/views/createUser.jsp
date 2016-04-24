@@ -18,26 +18,32 @@
     <tr>
         <td><form:label path="firstName"><spring:message code="user.firstName"/></form:label></td>
         <td><form:input path="firstName" /></td>
+        <td><form:errors path="firstName"/></td>
     </tr>
     <tr>
         <td><form:label path="lastName"><spring:message code="user.lastName"/></form:label></td>
         <td><form:input path="lastName" /></td>
+        <td><form:errors path="lastName"/></td>
     </tr>
     <tr>
         <td><form:label path="email"><spring:message code="user.email"/></form:label></td>
         <td><form:input path="email" /></td>
+        <td><form:errors path="email"/></td>
     </tr>
     <tr>
         <td><form:label path="password"><spring:message code="user.password"/></form:label></td>
         <td><form:input path="password" /></td>
+        <td><form:errors path="password"/></td>
     </tr>
     <tr>
         <td><form:label path="PESEL">PESEL</form:label></td>
         <td><form:input path="PESEL" /></td>
+        <td><form:errors path="PESEL"/></td>
     </tr>
     <tr>
         <td><form:label path="phone"><spring:message code="user.phone"/></form:label></td>
         <td><form:input path="phone" /></td>
+        <td><form:errors path="phone"/></td>
     </tr>
     <tr>
         <td>
