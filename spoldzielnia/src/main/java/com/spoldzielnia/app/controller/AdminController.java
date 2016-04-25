@@ -33,4 +33,11 @@ public class AdminController {
 	public String alogin(Model model) {
 		return "admin";
 	}
+	
+	@RequestMapping(value = "/404", method = RequestMethod.GET)
+	public ModelAndView accessDenied() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("404");
+		return model;
+	}
 }

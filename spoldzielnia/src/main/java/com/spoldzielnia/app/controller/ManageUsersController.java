@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spoldzielnia.app.model.User;
+import com.spoldzielnia.app.model.UserRole;
 import com.spoldzielnia.app.service.UserService;
 import com.spoldzielnia.app.validators.UserValidator;
 
@@ -24,7 +25,7 @@ import com.spoldzielnia.app.validators.UserValidator;
  */
 @Controller
 @RequestMapping("/admin")
-public class UsersController {
+public class ManageUsersController {
 	
 	@Autowired
 	UserService userService;
@@ -44,7 +45,9 @@ public class UsersController {
 			user=new User();
 		}
 		
+		map.put("userRoleList",userService.listUserRole());
 		map.put("user", user);
+		
 
 		return "createUser";
 	}
@@ -87,6 +90,18 @@ public class UsersController {
 	public String DeleteUser(HttpServletRequest request) {
 		int userID = ServletRequestUtils.getIntParameter(request, "idUser", -1);
 		userService.removeUser(userID);
+		return "redirect:manageUsers";
+	}
+	
+	@RequestMapping(value = "/createRole", method = RequestMethod.GET)
+	public ModelAndView showUserRole(){
+		return new ModelAndView("createRole","userRole",new UserRole());
+	}
+	
+	@RequestMapping(value = "/createRole", method = RequestMethod.POST)
+	public String addUserRole(@ModelAttribute("userRole") UserRole userRole)
+	{
+		userService.addUserRole(userRole);
 		return "redirect:manageUsers";
 	}
 }

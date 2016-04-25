@@ -31,6 +31,11 @@
         <td><form:errors path="email"/></td>
     </tr>
     <tr>
+        <td><form:label path="login"><spring:message code="user.login"/></form:label></td>
+        <td><form:input path="login" /></td>
+        <td><form:errors path="login"/></td>
+    </tr>
+    <tr>
         <td><form:label path="password"><spring:message code="user.password"/></form:label></td>
         <td><form:input path="password" /></td>
         <td><form:errors path="password"/></td>
@@ -44,6 +49,13 @@
         <td><form:label path="phone"><spring:message code="user.phone"/></form:label></td>
         <td><form:input path="phone" /></td>
         <td><form:errors path="phone"/></td>
+    </tr>
+    <tr>
+        <td><form:label path="userRole"><spring:message code="user.role"/></form:label></td>
+        <td><form:select path="userRole" multiple="true">
+        	<form:options items="${userRoleList}" itemValue="id" itemLabel="role"/>
+        </form:select></td>
+        <td><form:errors path="userRole"/></td>
     </tr>
     <tr>
         <td>

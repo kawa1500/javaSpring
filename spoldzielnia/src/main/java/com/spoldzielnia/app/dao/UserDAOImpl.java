@@ -1,5 +1,6 @@
 package com.spoldzielnia.app.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spoldzielnia.app.model.User;
+import com.spoldzielnia.app.model.UserRole;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -42,6 +44,60 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void editUser(User user) {
 		sessionFactory.getCurrentSession().update(user);
+	}
+
+	@Override
+	public void addRole(UserRole userRole) {
+		sessionFactory.getCurrentSession().save(userRole);
+	}
+
+	@Override
+	public List<UserRole> listUserRole() {
+		return sessionFactory.getCurrentSession().createQuery("from UserRole order by id").list();
+	}
+
+	@Override
+	public void removeUserRole(int id) {
+		UserRole userRole = (UserRole)sessionFactory.getCurrentSession().load(UserRole.class, id);
+		if(userRole!=null)
+		{
+			sessionFactory.getCurrentSession().delete(userRole);
+		}
+	}
+
+	@Override
+	public UserRole getUserRole(int id) {
+		return (UserRole)sessionFactory.getCurrentSession().get(UserRole.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	public UserRole findRoleByName(String role) {
+		List<UserRole> userRole = new ArrayList<UserRole>();
+		userRole=sessionFactory.getCurrentSession().createQuery("from UserRole where role=?").setParameter(0, role).list();
+		if(userRole.size()>0)
+		{
+			return userRole.get(0);
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public User findByLogin(String login) {
+		List<User> users = new ArrayList<User>();
+		  
+		users = sessionFactory.getCurrentSession()
+			.createQuery("from User where login=?")
+			.setParameter(0, login)
+			.list();
+
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
 	}
 
 }

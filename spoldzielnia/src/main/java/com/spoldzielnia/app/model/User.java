@@ -1,9 +1,14 @@
 package com.spoldzielnia.app.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +24,10 @@ public class User {
 	private String email;
 	private String phone;
 	private String password;
+	private String login;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	
 	public String getFirstName() {
 		return firstName;
@@ -68,6 +77,18 @@ public class User {
 	{
 		String result = "name: "+firstName+" ,surname: "+lastName+" ,email: "+email+" ,PESEL: "+PESEL+" ,phone: "+phone+" ,password: "+password;
 		return result;
+	}
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 }

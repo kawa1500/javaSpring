@@ -31,6 +31,7 @@ public class UserValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "password", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "PESEL", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "phone", "error.empty");
+		ValidationUtils.rejectIfEmpty(errors, "login", "error.empty");
 		
 		if(errors.getErrorCount() == 0)
 		{
