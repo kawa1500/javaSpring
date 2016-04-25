@@ -26,15 +26,15 @@ public class Flat {
 	public int getidFlat() {
 		return idFlat;
 	}
-	public void setIdUser(int idFlat) {
+	public void setIdFlat(int idFlat) {
 		this.idFlat = idFlat;
 	}
 	
 	@Override
 	public String toString()
 	{
-		String result_f = "Number of flat: "+flatNumber; 
-		return result_f;
+		String result = "Number of flat: "+flatNumber; 
+		return result;
 	}
 	
 }

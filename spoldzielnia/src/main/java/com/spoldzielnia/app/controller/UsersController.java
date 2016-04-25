@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,6 +34,8 @@ public class UsersController {
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {
 		int userID = ServletRequestUtils.getIntParameter(request, "idUser", -1);
 		User user;
+		
+		//je¿eli jest ID to znaczy ¿e bêdzie edycja 
 		if(userID>0)
 		{
 			user=userService.getUser(userID);
@@ -55,6 +56,7 @@ public class UsersController {
 		
 		userValidator.validate(user, result);
 		
+		// je¿eli nie ma b³êdów to idzie dalej w ifie, a jak s¹ to zwraca createUser
 		if(result.getErrorCount()==0)
 		{
 			if (user.getIdUser()==0)

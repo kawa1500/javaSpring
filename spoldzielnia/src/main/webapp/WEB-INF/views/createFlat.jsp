@@ -10,6 +10,7 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
+<!-- commandName nazwa obiektu ktory znajduje sie w tym forumalrzu -->
 <form:form method="post" action="" commandName="flat">
     <table>
     <tr>
@@ -19,9 +20,15 @@
         <td><form:label path="flatNumber"><spring:message code="flat.flatNumber"/></form:label></td>
         <td><form:input path="flatNumber" /></td>
     </tr>
-    <tr>
-       
-    </tr>
+    
+    <td>
+			<c:if test="${flat.idFlat<=0}">
+            	<input type="submit" value="<spring:message code="flat.add"/>"/>
+        	</c:if>
+        	<c:if test="${flat.idFlat>0}">
+            	<input type="submit" value="<spring:message code="flat.edit"/>"/>
+        	</c:if>
+        </td>
 </table> 
 </form:form>
 </body>

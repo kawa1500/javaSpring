@@ -10,24 +10,41 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
-<form:form method="post" action="" commandName="build">
+<!-- commandName nazwa obiektu ktory znajduje sie w tym forumalrzu -->
+<form:form method="post" action="" commandName="building">
     <table>
     <tr>
-        <td><form:hidden path="idBuild"/>
+        <td><form:hidden path="idBuilding"/>
     </tr>
     <tr>
-        <td><form:label path="buildNumber"><spring:message code="build.buildNumber"/></form:label></td>
-        <td><form:input path="buildNumber" /></td>
+        <td><form:label path="buildingStreet"><spring:message code="building.buildingStreet"/></form:label></td>
+        <td><form:input path="buildingStreet" /></td>
     </tr>
-    <tr>
-        <td><form:label path="buildAddress"><spring:message code="build.buildAddress"/></form:label></td>
-        <td><form:input path="buildAddress" /></td>
-    </tr>
-       
     
+    <tr>
+        <td><form:label path="buildingNumber"><spring:message code="building.buildingNumber"/></form:label></td>
+        <td><form:input path="buildingNumber" /></td>
+    </tr>
+    
+    <tr>
+        <td><form:label path="buildingPostCode"><spring:message code="building.buildingPostCode"/></form:label></td>
+        <td><form:input path="buildingPostCode" /></td>
+    </tr>
+    <tr>
+        <td><form:label path="buildingCity"><spring:message code="building.buildingCity"/></form:label></td>
+        <td><form:input path="buildingCity" /></td>
+    </tr>
+     	<td>
+			<c:if test="${building.idBuilding<=0}">
+            	<input type="submit" value="<spring:message code="building.add"/>"/>
+        	</c:if>
+        	<c:if test="${building.idBuilding>0}">
+            	<input type="submit" value="<spring:message code="building.edit"/>"/>
+        	</c:if>
+        </td>
+   
 </table> 
 </form:form>
 </body>
 </html>
- 
  

@@ -1,21 +1,21 @@
 package com.spoldzielnia.app.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
+import com.spoldzielnia.app.model.Flat;
+
 @Controller
 @RequestMapping("/admin")
-public class FlatController {
-	
-	@RequestMapping(value = "/createFlat", method = RequestMethod.GET)
-	public String createFlat(Model model) {
-		return "createFlat";
-	}
-	
-
+public class FlatController 
+{
+	   @RequestMapping("/createFlat")
+	   public ModelAndView createFlat() {
+	        
+	       return new ModelAndView("createFlat", "flat", new Flat());
+	   }
 }
+
+
+
