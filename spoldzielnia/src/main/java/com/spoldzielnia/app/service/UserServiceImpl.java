@@ -1,5 +1,6 @@
 package com.spoldzielnia.app.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,10 @@ public class UserServiceImpl implements UserService{
 	
 	@Transactional
 	public void addUser(User user) {
+		user.getUserRole().add(userDAO.findRoleByName("ROLE_USER"));
 		user.setPassword(hashPassword(user.getPassword()));
 		userDAO.addUser(user);
+		userDAO.editUser(user);
 	}
 
 	@Transactional
@@ -42,6 +45,13 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public void editUser(User user) {
 		user.setPassword(hashPassword(user.getPassword()));
+		//User user1=userDAO.getUser(user.getIdUser());
+		System.out.println("SUMA Ró1111qw : "+user.getUserRole().size());
+
+			System.out.println("ITERACJA");
+			
+
+		//System.out.println("SUMA Ról : "+user1.getUserRole().size());
 		userDAO.editUser(user);
 	}
 

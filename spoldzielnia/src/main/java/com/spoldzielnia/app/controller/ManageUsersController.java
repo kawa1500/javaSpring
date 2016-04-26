@@ -39,13 +39,14 @@ public class ManageUsersController {
 		if(userID>0)
 		{
 			user=userService.getUser(userID);
+			System.out.println("ILOSC Ról: "+user.getUserRole().size());
 		}
 		else
 		{
 			user=new User();
 		}
 		
-		map.put("userRoleList",userService.listUserRole());
+		//map.put("userRoleList",userService.listUserRole());
 		map.put("user", user);
 		
 
@@ -57,7 +58,7 @@ public class ManageUsersController {
 	public String addUser(@ModelAttribute("user") User user, Model model, BindingResult result) {
 		
 		userValidator.validate(user, result);
-		
+
 		if(result.getErrorCount()==0)
 		{
 			if (user.getIdUser()==0)
@@ -66,6 +67,9 @@ public class ManageUsersController {
 			}
 			else
 			{
+				User userEdit = userService.getUser(user.getIdUser());
+				System.out.println("ILOSC Rólaaaaaaaaaaaa: "+userEdit.getUserRole().size());
+				user.setUserRole(userEdit.getUserRole());
 				userService.editUser(user);
 			}
 			return "redirect:manageUsers";

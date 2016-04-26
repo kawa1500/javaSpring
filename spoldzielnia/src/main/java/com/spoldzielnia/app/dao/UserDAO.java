@@ -18,4 +18,5 @@ public interface UserDAO {
 	public void removeUserRole(int id);
 	public UserRole getUserRole(int id);
 	public UserRole findRoleByName(String role);
+	public UserRole listUserRoleForUser(int id);
 }

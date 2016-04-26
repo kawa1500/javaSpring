@@ -1,6 +1,7 @@
 package com.spoldzielnia.app.dao;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -98,6 +99,15 @@ public class UserDAOImpl implements UserDAO{
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public UserRole listUserRoleForUser(int id) {
+		List<UserRole> userRole = new ArrayList<UserRole>();;
+		String sql="select * from UserRole as r join user_userrole as m on r.id=m.userrole_id where m.user_iduser="+id;
+		String hql="from UserRole ur, User iT where ur.id=iT.idUser";
+		userRole=sessionFactory.getCurrentSession().createQuery(sql).list();
+		return userRole.get(0);
 	}
 
 }
