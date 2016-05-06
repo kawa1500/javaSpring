@@ -28,9 +28,10 @@ public class UserValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "lastName", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "email", "error.empty");
-		ValidationUtils.rejectIfEmpty(errors, "password", "error.empty");
+		if(user.getIdUser()==0 || user.getPassword().length()>0)ValidationUtils.rejectIfEmpty(errors, "password", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "PESEL", "error.empty");
 		ValidationUtils.rejectIfEmpty(errors, "phone", "error.empty");
+		ValidationUtils.rejectIfEmpty(errors, "login", "error.empty");
 		
 		if(errors.getErrorCount() == 0)
 		{
@@ -46,9 +47,12 @@ public class UserValidator implements Validator{
 			{
 				errors.rejectValue("phone", "error.phone.invalid");
 			}
-			if (validPassword(user.getPassword()) == false)
+			if(user.getIdUser()==0 || user.getPassword().length()>0)
 			{
-				errors.rejectValue("password", "error.password.invalid");
+				if (validPassword(user.getPassword()) == false)
+				{
+					errors.rejectValue("password", "error.password.invalid");
+				}
 			}
 		}
 	}

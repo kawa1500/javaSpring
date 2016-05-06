@@ -23,7 +23,7 @@
     <definition name="home" extends="base.definition">
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
-        <put-attribute name="menu" value="" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuHome.jsp" />
     </definition>
     
     <definition name="createUser" extends="base.definition">
@@ -48,6 +48,24 @@
         <put-attribute name="title" value="Manage Users" />
         <put-attribute name="body" value="/WEB-INF/views/manageUsers.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="createRole" extends="base.definition">
+        <put-attribute name="title" value="Create Roles" />
+        <put-attribute name="body" value="/WEB-INF/views/createRole.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+    
+    <definition name="user" extends="base.definition">
+        <put-attribute name="title" value="User Home" />
+        <put-attribute name="body" value="/WEB-INF/views/user.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuUser.jsp" />
+    </definition>
+    
+    <definition name="changePassword" extends="base.definition">
+        <put-attribute name="title" value="Change Password" />
+        <put-attribute name="body" value="/WEB-INF/views/changePassword.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuUser.jsp" />
     </definition>
 
 </tiles-definitions>

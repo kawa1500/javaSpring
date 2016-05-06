@@ -31,7 +31,12 @@
         <td><form:errors path="email"/></td>
     </tr>
     <tr>
-        <td><form:label path="password"><spring:message code="user.password"/></form:label></td>
+        <td><form:label path="login"><spring:message code="user.login"/></form:label></td>
+        <td><form:input path="login" /></td>
+        <td><form:errors path="login"/></td>
+    </tr>
+    <tr>
+        <td><form:label path="password" ><spring:message code="user.password"/></form:label></td>
         <td><form:input path="password" /></td>
         <td><form:errors path="password"/></td>
     </tr>
