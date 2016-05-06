@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,6 +12,10 @@
             	Content for admin ${pageContext.request.authType}.
 		</h4>
 </c:if>			
+=======
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+>>>>>>> be8895dd81afbd2fca495de9135b6bd9ac7780a4
 <table>
 	<tr><td><a href="/app/admin"><spring:message code="menu.user.admin"/></a></td></tr>
 	<tr><td><a href="/app/user/changePassword"><spring:message code="user.change"/></a></td></tr>

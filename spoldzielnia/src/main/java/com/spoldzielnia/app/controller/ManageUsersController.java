@@ -40,7 +40,8 @@ public class ManageUsersController {
 		{
 			user=userService.getUser(userID);
 			user.setPassword("");
-		}
+
+			System.out.println("ILOSC Ról: "+user.getUserRole().size());	}
 		else
 		{
 			user=new User();

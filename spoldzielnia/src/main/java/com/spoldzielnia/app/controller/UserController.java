@@ -5,10 +5,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,8 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spoldzielnia.app.model.PasswordUser;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.UserService;
+
 import com.spoldzielnia.app.validators.PasswordUserValidator;
-import com.spoldzielnia.app.validators.UserValidator;
+
 
 @Controller
 @RequestMapping("/user")
@@ -29,8 +32,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	PasswordUserValidator validator = new PasswordUserValidator();
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewUser() {
@@ -48,6 +52,7 @@ public class UserController {
 	public String updatePassword(@ModelAttribute("user") PasswordUser user, BindingResult result)
 	{
 		validator.validate(user, result);
+
 		User myUser = userService.getUser(user.getLogin());
 		if(myUser!=null)
 		{
@@ -55,8 +60,7 @@ public class UserController {
 			user.setOldPasswordHash(myUser.getPassword());
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			if(encoder.matches(user.getOldPassword(), user.getOldPasswordHash()))
-			{
-				
+			{	
 				myUser.setPassword(user.getNewPassword());
 				myUser.setPassword(userService.hashPassword(myUser.getPassword()));
 				userService.editUser(myUser);
@@ -65,6 +69,7 @@ public class UserController {
 			else
 			{
 				result.rejectValue("oldPassword", "error.password.incorect");
+				System.out.println("B³êdne has³o");
 				return "changePassword";
 			}
 			
@@ -72,6 +77,7 @@ public class UserController {
 		else 
 		{
 			result.rejectValue("login", "error.login.incorect");
+			System.out.println("B³êdny login");
 			return "changePassword";
 		}
 		

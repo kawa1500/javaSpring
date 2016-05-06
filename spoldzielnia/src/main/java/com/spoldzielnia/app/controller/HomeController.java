@@ -3,6 +3,7 @@ package com.spoldzielnia.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import com.spoldzielnia.app.service.UserService;
 @Controller
 public class HomeController {
 
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {	
@@ -25,6 +27,7 @@ public class HomeController {
 		 */
 		MailService m = new MailService();
 		m.sendMail("as", "asd");
+
 		return "home";
 	}
 	
