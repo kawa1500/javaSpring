@@ -19,9 +19,22 @@
     <tr>
         <td><form:label path="flatNumber"><spring:message code="flat.flatNumber"/></form:label></td>
         <td><form:input path="flatNumber" /></td>
+        <td><form:errors path="flatNumber"/></td>
     </tr>
     
-    <td>
+    <tr>
+        <td><form:label path="flatSurface"><spring:message code="flat.flatSurface"/></form:label></td>
+        <td><form:input path="flatSurface" /></td>
+        <td><form:errors path="flatSurface"/></td>
+    </tr>
+    
+    <tr>
+        <td><form:label path="tenantNumber"><spring:message code="flat.tenantNumber"/></form:label></td>
+        <td><form:input path="tenantNumber" /></td>
+        <td><form:errors path="tenantNumber"/></td>
+    </tr>
+      
+     	<td>
 			<c:if test="${flat.idFlat<=0}">
             	<input type="submit" value="<spring:message code="flat.add"/>"/>
         	</c:if>
@@ -29,6 +42,7 @@
             	<input type="submit" value="<spring:message code="flat.edit"/>"/>
         	</c:if>
         </td>
+   
 </table> 
 </form:form>
 </body>

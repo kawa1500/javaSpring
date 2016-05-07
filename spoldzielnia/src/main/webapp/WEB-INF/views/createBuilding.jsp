@@ -19,20 +19,24 @@
     <tr>
         <td><form:label path="buildingStreet"><spring:message code="building.buildingStreet"/></form:label></td>
         <td><form:input path="buildingStreet" /></td>
+        <td><form:errors path="buildingStreet"/></td>
     </tr>
     
     <tr>
         <td><form:label path="buildingNumber"><spring:message code="building.buildingNumber"/></form:label></td>
         <td><form:input path="buildingNumber" /></td>
+        <td><form:errors path="buildingNumber"/></td>
     </tr>
     
     <tr>
         <td><form:label path="buildingPostCode"><spring:message code="building.buildingPostCode"/></form:label></td>
         <td><form:input path="buildingPostCode" /></td>
+        <td><form:errors path="buildingPostCode"/></td>
     </tr>
     <tr>
         <td><form:label path="buildingCity"><spring:message code="building.buildingCity"/></form:label></td>
         <td><form:input path="buildingCity" /></td>
+        <td><form:errors path="buildingCity"/></td>
     </tr>
      	<td>
 			<c:if test="${building.idBuilding<=0}">

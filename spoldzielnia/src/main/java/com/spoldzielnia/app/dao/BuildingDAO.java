@@ -9,5 +9,5 @@ public interface BuildingDAO {
 	public List<Building> listBuilding();
 	public void removeBuilding(int id);
 	public Building getBuilding(int id);
-	public void editBuilding(Building user);
+	public void editBuilding(Building building);
 }

@@ -1,27 +1,19 @@
 package com.spoldzielnia.app.controller;
 
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.servlet.ModelAndView;
-
 import com.spoldzielnia.app.model.Building;
-
 import com.spoldzielnia.app.service.BuildingService;
-
-
-
+import com.spoldzielnia.app.validators.BuildingValidator;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,7 +21,7 @@ public class BuildingController {
 	
 	@Autowired
 	BuildingService buildingService;
-	
+	BuildingValidator buildingValidator = new BuildingValidator();
 	@RequestMapping(value = "/createBuilding", method = RequestMethod.GET)
 	public String viewCreateBuilding(Map<String,Object> map,HttpServletRequest request ) {
 		int buildingID = ServletRequestUtils.getIntParameter(request, "idBuilding", -1);
@@ -41,9 +33,7 @@ public class BuildingController {
 			building=buildingService.getBuilding(buildingID);
 		}
 		else
-		{
-			building=new Building();
-		}
+		{building=new Building();}
 		
 		map.put("building", building);
 
@@ -54,7 +44,7 @@ public class BuildingController {
 	@RequestMapping(value = "/createBuilding", method = RequestMethod.POST)
 	public String addBuilding(@ModelAttribute("building") Building building, Model model, BindingResult result) {
 		
-		
+		buildingValidator.validate(building, result);
 		// je¿eli nie ma b³êdów to idzie dalej w ifie, a jak s¹ to zwraca createUser
 		if(result.getErrorCount()==0)
 		{

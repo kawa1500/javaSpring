@@ -57,4 +57,10 @@
         <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
 
+	<definition name="manageFlat" extends="base.definition">
+        <put-attribute name="title" value="Manage Flat" />
+        <put-attribute name="body" value="/WEB-INF/views/manageFlat.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
+    </definition>
+
 </tiles-definitions>

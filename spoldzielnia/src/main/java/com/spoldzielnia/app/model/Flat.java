@@ -12,29 +12,34 @@ public class Flat {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idFlat;
-	
-	private Integer flatNumber;
-	
-	
-	public Integer getFlatNumber() {
-		return flatNumber;
-	}
-	public void setFlatNumber(Integer flatNumber) {
-		this.flatNumber = flatNumber;
-	}
-	
-	public int getidFlat() {
+	private  String flatNumber;
+	private String flatSurface;
+	private String tenantNumber;
+
+	public int getIdFlat() {
 		return idFlat;
 	}
 	public void setIdFlat(int idFlat) {
 		this.idFlat = idFlat;
 	}
-	
-	@Override
-	public String toString()
-	{
-		String result = "Number of flat: "+flatNumber; 
-		return result;
+	public String getFlatNumber() {
+		return flatNumber;
 	}
-	
+	public void setFlatNumber(String flatNumber) {
+		this.flatNumber = flatNumber;
+	}
+	public String getFlatSurface() {
+		return flatSurface;
+	}
+	public void setFlatSurface(String flatSurface) {
+		this.flatSurface = flatSurface;
+	}
+	public String getTenantNumber() {
+		return tenantNumber;
+	}
+	public void setTenantNumber(String tenantNumber) {
+		this.tenantNumber = tenantNumber;
+	}
+
 }
+	
