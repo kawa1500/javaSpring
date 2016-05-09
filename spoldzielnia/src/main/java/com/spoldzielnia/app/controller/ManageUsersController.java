@@ -41,14 +41,14 @@ public class ManageUsersController {
 		{
 			user=userService.getUser(userID);
 			user.setPassword("");
-
+			
 			System.out.println("ILOSC Ról: "+user.getUserRole().size());	}
 		else
 		{
 			user=new User();
 		}
 		
-		//map.put("userRoleList",userService.listUserRole());
+		map.put("userRoleList",userService.listUserRole());
 		map.put("user", user);
 		
 
@@ -71,7 +71,7 @@ public class ManageUsersController {
 			{
 				User userEdit = userService.getUser(user.getIdUser());
 				System.out.println("ILOSC Rólaaaaaaaaaaaa: "+userEdit.getUserRole().size());
-				user.setUserRole(userEdit.getUserRole());
+				if(user.getUserRole()==null)user.setUserRole(userEdit.getUserRole());
 				if(user.getPassword().isEmpty())
 				{
 					user.setPassword(userEdit.getPassword());

@@ -54,6 +54,10 @@ public class UserValidator implements Validator{
 					errors.rejectValue("password", "error.password.invalid");
 				}
 			}
+			if(user.getUserRole()==null)
+			{
+				errors.rejectValue("userRole", "error.role.invalid");
+			}
 		}
 	}
 

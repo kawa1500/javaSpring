@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spoldzielnia.app.model.PasswordUser;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.UserService;
-
+import com.spoldzielnia.app.utils.MailMail;
 import com.spoldzielnia.app.validators.PasswordUserValidator;
 
 
@@ -64,6 +64,9 @@ public class UserController {
 				myUser.setPassword(user.getNewPassword());
 				myUser.setPassword(userService.hashPassword(myUser.getPassword()));
 				userService.editUser(myUser);
+				ApplicationContext context = new ClassPathXmlApplicationContext("spring-mail.xml");
+		    	MailMail mm = (MailMail) context.getBean("mailMail");
+		    	mm.changePassword(myUser, user);
 				return "user";
 			}
 			else
