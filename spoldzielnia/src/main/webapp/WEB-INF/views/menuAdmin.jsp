@@ -7,10 +7,7 @@
 	<tr><td><a href="/app/admin/createBuilding"><spring:message code="menu.createBuilding"/></a></td></tr>
 	<tr><td><a href="/app/admin/createFlat"><spring:message code="menu.createFlat"/></a></td></tr>
 	<tr><td><a href="/app/admin/manageUsers"><spring:message code="menu.manageUsers"/></a></td></tr>
-<<<<<<< HEAD
 	<tr><td><a href="/app/admin/createRole"><spring:message code="menu.createRole"/></a></td></tr>
-=======
 	<tr><td><a href="/app/admin/manageBuilding"><spring:message code="menu.manageBuilding"/></a></td></tr>
 	<tr><td><a href="/app/admin/manageFlat"><spring:message code="menu.manageFlat"/></a></td></tr>
->>>>>>> Krzychu-Laptop
 </table>

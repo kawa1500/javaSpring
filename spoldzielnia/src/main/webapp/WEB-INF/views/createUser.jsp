@@ -36,11 +36,7 @@
         <td><form:errors path="login"/></td>
     </tr>
     <tr>
-<<<<<<< HEAD
         <td><form:label path="password" ><spring:message code="user.password"/></form:label></td>
-=======
-        <td><form:label path="password"><spring:message code="user.password"/></form:label></td>
->>>>>>> be8895dd81afbd2fca495de9135b6bd9ac7780a4
         <td><form:input path="password" /></td>
         <td><form:errors path="password"/></td>
     </tr>
