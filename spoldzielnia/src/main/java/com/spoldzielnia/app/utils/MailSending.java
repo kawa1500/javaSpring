@@ -14,12 +14,12 @@ import javax.mail.internet.MimeMessage;
 
 public class MailSending {
 
-	private static final String HOST = "smtp.gmail.com";
+	private static final String HOST = "smtp.poczta.onet.pl";
 	 private static final int PORT = 465;
 	 // Adres email osby która wysy³a maila
-	 private static final String FROM = "spoldzielniakb@gmail.com";
+	 private static final String FROM = "spoldzielnia.kb@onet.pl";
 	 // Has³o do konta osoby która wysy³a maila
-	 private static final String PASSWORD = "spoldzielnia";
+	 private static final String PASSWORD = "Spoldzielnia1";
 	 // Adres email osoby do której wysy³any jest mail
 	 private static final String TO = "spoldzielniakb@gmail.com";
 	 // Temat wiadomoœci
