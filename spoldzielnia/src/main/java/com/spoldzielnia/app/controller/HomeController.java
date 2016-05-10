@@ -28,7 +28,9 @@ public class HomeController {
 		 Has³o : 12345678
 		 $2a$10$vZfPujX4Ohgl6eJqsRgn6ur8wFQNGNDwYNc.7YOyyOoxggTR6Umje
 		 */
-		
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-mail.xml");
+		MailMail myMail = (MailMail) context.getBean("mailMail");
+    	myMail.sendMail("kawa1593@gmail.com", "Create", "dsfasdfads");
 
 		return "home";
 	}
