@@ -20,6 +20,15 @@ public class SendingMail {
 	
 	public void createUser(User user)
 	{
-		myMail.sendMail(user.getEmail(), "Create account", language);
+		String msg="Stworzono uzytkownika w aplikacji do zarz¹dzania mieszkaniem\n\n"+
+					"Twoje dane:\n"+
+					"Imiê:"+user.getFirstName()+"\n"+
+					"Nazwisko:"+user.getLastName()+"\n"+
+					"Numer telefonu:"+user.getPhone()+"\n"+
+					"\nDane logowania do portalu:\n"+
+					"Login:"+user.getLogin()+"\n"+
+					"Imiê:"+user.getPassword()+"\n\n"+
+					"Jeœli wystêpuj¹ tu jakieœ b³êdy odpisz";
+		myMail.sendMail(user.getEmail(), "Rejestracja u¿ytkownika", msg);
 	}
 }

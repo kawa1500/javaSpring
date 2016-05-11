@@ -73,6 +73,8 @@ public class ManageUsersController {
 //				ApplicationContext context = new ClassPathXmlApplicationContext("spring-mail.xml");
 //		    	MailMail myMail = (MailMail) context.getBean("mailMail");
 //		    	myMail.sendMail(user.getEmail(), "Create", language);
+				SendingMail mailSend = new SendingMail(language);
+				mailSend.createUser(user);
 				System.out.println("JEEEEEEEZYK: "+language);
 				userService.addUser(user);
 				

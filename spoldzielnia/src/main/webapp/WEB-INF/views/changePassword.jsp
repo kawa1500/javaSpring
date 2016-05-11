@@ -22,12 +22,12 @@
     </tr>
     <tr>
         <td><form:label path="oldPassword"><spring:message code="user.password"/></form:label></td>
-        <td><form:input path="oldPassword" /></td>
+        <td><form:input type="password" path="oldPassword" /></td>
         <td><form:errors path="oldPassword"/></td>
     </tr>
     <tr>
         <td><form:label path="newPassword"><spring:message code="user.password.new"/></form:label></td>
-        <td><form:input path="newPassword" /></td>
+        <td><form:input type="password" path="newPassword" /></td>
         <td><form:errors path="newPassword"/></td>
     </tr>
     <tr>
