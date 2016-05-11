@@ -69,5 +69,10 @@
         <put-attribute name="title" value="Manage Flat" />
         <put-attribute name="body" value="/WEB-INF/views/manageFlat.jsp" />
     </definition>
+    
+    <definition name="prices" extends="base.definition">
+        <put-attribute name="title" value="Manage Prices" />
+        <put-attribute name="body" value="/WEB-INF/views/prices.jsp" />
+    </definition>
 
 </tiles-definitions>

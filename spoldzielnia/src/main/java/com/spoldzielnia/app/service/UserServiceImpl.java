@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 	public void addUser(User user) {
 		user.setPassword(hashPassword(user.getPassword()));
 		userDAO.addUser(user);
-		userDAO.editUser(user);
+		//userDAO.editUser(user);
 	}
 
 	@Transactional
