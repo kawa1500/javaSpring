@@ -16,7 +16,7 @@
         <td><form:hidden path="idPrices"/>
     </tr>
     <tr>
-        <td><form:label path="water"><spring:message code="price.water"/> zł/m2</form:label></td>
+        <td><form:label path="water"><spring:message code="price.water"/> zł/m3</form:label></td>
         <td><form:input path="water" /></td>
         <td><form:errors path="water"/></td>
     </tr>

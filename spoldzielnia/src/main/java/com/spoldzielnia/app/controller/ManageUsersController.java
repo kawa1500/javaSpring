@@ -70,14 +70,21 @@ public class ManageUsersController {
 		{
 			if (user.getIdUser()==0)
 			{
-//				ApplicationContext context = new ClassPathXmlApplicationContext("spring-mail.xml");
-//		    	MailMail myMail = (MailMail) context.getBean("mailMail");
-//		    	myMail.sendMail(user.getEmail(), "Create", language);
-				SendingMail mailSend = new SendingMail(language);
-				mailSend.createUser(user);
-				System.out.println("JEEEEEEEZYK: "+language);
-				userService.addUser(user);
-				
+				User memory = userService.getUser(user.getLogin());
+				if(memory.getIdUser()>0)
+				{
+					result.rejectValue("login", "error.login.exist");
+					map.put("userRoleList",userService.listUserRole());
+					return "createUser";
+				}
+				else
+				{
+					SendingMail mailSend = new SendingMail(language);
+					mailSend.createUser(user);
+					System.out.println("JEEEEEEEZYK: "+language);
+					userService.addUser(user);
+					return "redirect:manageUsers";
+				}	
 			}
 			else
 			{
@@ -93,8 +100,9 @@ public class ManageUsersController {
 					user.setPassword(userService.hashPassword(user.getPassword()));
 				}
 				userService.editUser(user);
+				return "redirect:manageUsers";
 			}
-			return "redirect:manageUsers";
+			
 		}
 		else
 		{
