@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spoldzielnia.app.service.UserService;
+import com.spoldzielnia.app.utils.document.PdfCreator;
 import com.spoldzielnia.app.utils.mail.MailMail;
 
 /**

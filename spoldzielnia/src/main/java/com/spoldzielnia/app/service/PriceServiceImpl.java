@@ -21,7 +21,7 @@ public class PriceServiceImpl implements PriceService{
 	public void addPrice(Prices price) {
 		Prices last = getActivePrice();
 		last.setStatus(0);
-		if(last!=null)pricesDAO.updatePrice(last);
+		if(last!=null && last.getIdPrices()>0)pricesDAO.updatePrice(last);
 		price.setStatus(1);
 		price.setCreateDate(new Date());
 		pricesDAO.addPrice(price);
