@@ -51,4 +51,9 @@ public class CounterServiceImpl implements CounterService {
 		counterDAO.editCounter(user);
 	}
 
+	@Override
+	public Counters get(int idCounter) {
+		return counterDAO.get(idCounter);
+	}
+
 }

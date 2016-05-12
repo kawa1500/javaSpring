@@ -10,4 +10,5 @@ public interface CounterDAO {
 	public List<Counters> listMyCounter(int ifFlat);
 	public Counters getActiveCounter(int idFlat);
 	public void editCounter(Counters user);
+	public Counters get(int idCounter);
 }

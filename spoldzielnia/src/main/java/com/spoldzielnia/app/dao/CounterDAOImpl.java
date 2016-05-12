@@ -22,17 +22,16 @@ public class CounterDAOImpl implements CounterDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Counters> listMyCounter(int ifFlat) {
-		String sql="from Counters where status<1 and idFlat=? order by modDate desc";
+		String sql="from Counters where status=0 and idFlat=? order by modDate desc";
 		return sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, ifFlat).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	public Counters getActiveCounter(int idFlat) {
 		List<Counters> counters = new ArrayList<Counters>();
-		  int status = 0;
 		  counters = sessionFactory.getCurrentSession()
-			.createQuery("from Counters where status>?")
-			.setParameter(0, status)
+			.createQuery("from Counters where status>0 and idFlat=? order by modDate desc")
+			.setParameter(0, idFlat)
 			.list();
 
 		if (counters.size() > 0) {
@@ -47,6 +46,11 @@ public class CounterDAOImpl implements CounterDAO{
 	@Override
 	public void editCounter(Counters user) {
 		sessionFactory.getCurrentSession().update(user);
+	}
+
+	@Override
+	public Counters get(int idCounter) {
+		return (Counters)sessionFactory.getCurrentSession().get(Counters.class, idCounter);
 	}
 
 }

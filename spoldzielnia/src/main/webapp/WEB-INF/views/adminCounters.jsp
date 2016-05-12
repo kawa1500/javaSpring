@@ -10,7 +10,13 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
-<a>DO zatwierdzenia</a>
+<c:if  test="${!empty confirmList}">
+<table style="width: 90%">
+<tr>
+	<td><h2><spring:message code="counter.confirmation"/></h2></td>
+	<td align="right"><a href="/app/admin/confirmAll"><spring:message code="counter.confirmAll"/></a></td>
+</tr>
+</table>
 <table style="width: 100%">
 <tr>
 	<th>ID USER</th>
@@ -18,6 +24,7 @@
     <th><spring:message code="price.gas"/></th>
     <th><spring:message code="price.current"/></th>
     <th><spring:message code="price.energy"/></th>
+    <th><spring:message code="counter.ryczalt"/></th>
     <th><spring:message code="price.date"/></th>
 </tr>
 <c:forEach items="${confirmList}" var="counters">
@@ -29,12 +36,21 @@
         <td align="center">${counters.energy} </td>
         <td align="center">${counters.ryczalt} </td>
         <td align="center">${counters.modDate} </td>
-        <td><a href="/app/admin/counters/confirm?idUser=${counters.idCounter}">CONFIRM</a></td>
+        <td><a href="/app/admin/confirm?idCounter=${counters.idCounter}"><spring:message code="counter.confirm"/></a></td>
     </tr>
 </c:forEach>
 </table>
+</c:if>
 </br></br>
-<a>DO ryczaltowania</a>
+<c:if  test="${!empty ryczaltList}">
+<table style="width: 90%">
+<tr>
+	<td><h2><spring:message code="counter.ryczaltion"/></h2></td>
+	<c:if test="${update==true}">
+            	<td align="right"><a href="/app/admin/ryczaltAll"><spring:message code="counter.ryczaltAll"/></a></td>
+    </c:if>
+</tr>
+</table>
 <table style="width: 100%">
 <tr>
 	<th>ID USER</th>
@@ -55,10 +71,11 @@
         <td align="center">${counters.ryczalt} </td>
         <td align="center">${counters.modDate} </td>
         <c:if test="${update==true}">
-            	<td><a href="/app/admin/ryczalt?idUser=${counters.idFlat}&idCounter=${counters.idCounter}">RYCZALT</a></td>
+            	<td><a href="/app/admin/ryczalt?idUser=${counters.idFlat}&idCounter=${counters.idCounter}"><spring:message code="counter.ryczalt"/></a></td>
         </c:if>
     </tr>
 </c:forEach>
 </table>
+</c:if>
 </body>
 </html>

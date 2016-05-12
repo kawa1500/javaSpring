@@ -88,7 +88,7 @@ public class CounterController {
 			{
 				if(count.getModDate().getMonth()==new Date().getMonth())
 				{
-					confirmList.add(count);
+					if(count.getStatus()==1)confirmList.add(count);
 				}
 				else
 				{
@@ -99,7 +99,7 @@ public class CounterController {
 			{
 				ryczaltList.add(count);
 			}
-			
+			System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+count.getIdFlat());
 		}
 		
 		map.put("confirmList",confirmList);
@@ -117,21 +117,60 @@ public class CounterController {
 	public String ryczalt(Map<String,Object> map,HttpServletRequest request ) {
 		int userID = ServletRequestUtils.getIntParameter(request, "idUser", -1);
 		int idCounter = ServletRequestUtils.getIntParameter(request, "idCounter", -1);
-		Prices actualPrices= priceService.getActivePrice();
-		if(idCounter<1){
-			Counters lastCounter = counterService.getActiveCounter(userID);
-			lastCounter.setIdCounter(0);
-			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
-			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
-			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
-			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
-			lastCounter.setRyczalt(true);
-			counterService.addCounter(lastCounter);
-		}
-		else
+		ryczaltuj(userID, idCounter);
+		return "redirect:counters";
+	}
+	
+	@RequestMapping(value = "/admin/confirm", method = RequestMethod.GET)
+	public String confirm(Map<String,Object> map,HttpServletRequest request ) {
+		int idCounter = ServletRequestUtils.getIntParameter(request, "idCounter", -1);
+		Counters myCount = counterService.get(idCounter);
+		myCount.setStatus(2);
+		counterService.editCounter(myCount);
+		return "redirect:counters";
+	}
+	
+	@RequestMapping(value = "/admin/ryczaltAll", method = RequestMethod.GET)
+	public String ryczaltAll(Map<String,Object> map,HttpServletRequest request ) {
+		for(User user: userService.listUser())
 		{
-			System.out.println("UPDATE LICZNIKÓW");
+			System.out.println("wyszukiwanie licznika dla usera: "+user.getIdUser());
+			Counters count = counterService.getActiveCounter(user.getIdUser());
+			if(count.getIdCounter()>0)
+			{
+				if(count.getModDate().getMonth()!=new Date().getMonth())
+				{
+					ryczaltuj(count.getIdFlat(), count.getIdCounter());
+				}
+			}
+			else
+			{
+				ryczaltuj(count.getIdFlat(), count.getIdCounter());
+			}
+			
+			System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+count.getIdFlat());
 		}
+
+		return "redirect:counters";
+	}
+	
+	@RequestMapping(value = "/admin/confirmAll", method = RequestMethod.GET)
+	public String confirmAll(Map<String,Object> map,HttpServletRequest request ) {
+		for(User user: userService.listUser())
+		{
+			System.out.println("wyszukiwanie licznika dla usera: "+user.getIdUser());
+			Counters count = counterService.getActiveCounter(user.getIdUser());
+			if(count.getIdCounter()>0)
+			{
+				if(count.getModDate().getMonth()==new Date().getMonth() && count.getStatus()==1)
+				{
+					count.setStatus(2);
+					counterService.editCounter(count);
+				}
+			}
+			//System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+count.getIdFlat());
+		}
+
 		return "redirect:counters";
 	}
 	
@@ -143,5 +182,33 @@ public class CounterController {
 	      int id = userService.getUser(name).getIdUser();
 	      System.out.println("ID usera: "+id);
 	      return id;
+	}
+	
+	private void ryczaltuj(int idUser, int idCounter)
+	{
+		Prices actualPrices= priceService.getActivePrice();
+		System.out.println("Dane wejœciowe: "+idUser+"|"+idCounter);
+		if(idCounter<1){
+			Counters lastCounter = new Counters();
+			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
+			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
+			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
+			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
+			lastCounter.setRyczalt(true);
+			lastCounter.setIdFlat(idUser);
+			counterService.addCounter(lastCounter);
+			System.out.println("TWORZENIE LICZNIKÓW");
+		}
+		else
+		{
+			Counters lastCounter = counterService.getActiveCounter(idUser);
+			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
+			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
+			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
+			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
+			lastCounter.setRyczalt(true);
+			counterService.addCounter(lastCounter);
+			System.out.println("UPDATE LICZNIKÓW");
+		}
 	}
 }
