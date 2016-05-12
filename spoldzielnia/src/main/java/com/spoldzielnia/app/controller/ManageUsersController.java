@@ -71,7 +71,7 @@ public class ManageUsersController {
 			if (user.getIdUser()==0)
 			{
 				User memory = userService.getUser(user.getLogin());
-				if(memory.getIdUser()>0)
+				if(memory!=null)
 				{
 					result.rejectValue("login", "error.login.exist");
 					map.put("userRoleList",userService.listUserRole());
@@ -79,8 +79,8 @@ public class ManageUsersController {
 				}
 				else
 				{
-					SendingMail mailSend = new SendingMail(language);
-					mailSend.createUser(user);
+					//SendingMail mailSend = new SendingMail(language);
+					//mailSend.createUser(user);
 					System.out.println("JEEEEEEEZYK: "+language);
 					userService.addUser(user);
 					return "redirect:manageUsers";

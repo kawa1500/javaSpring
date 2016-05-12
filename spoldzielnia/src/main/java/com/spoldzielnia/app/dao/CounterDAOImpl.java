@@ -22,8 +22,8 @@ public class CounterDAOImpl implements CounterDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Counters> listMyCounter(int ifFlat) {
-		String sql="from Counters where status<1 order by modDate desc";
-		return sessionFactory.getCurrentSession().createQuery(sql).list();
+		String sql="from Counters where status<1 and idFlat=? order by modDate desc";
+		return sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, ifFlat).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -38,7 +38,9 @@ public class CounterDAOImpl implements CounterDAO{
 		if (counters.size() > 0) {
 			return counters.get(0);
 		} else {
-			return new Counters();
+			Counters count = new Counters();
+			count.setIdFlat(idFlat);
+			return count;
 		}
 	}
 

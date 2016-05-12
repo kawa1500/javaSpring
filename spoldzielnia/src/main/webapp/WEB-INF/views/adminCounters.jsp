@@ -10,42 +10,34 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
-<form:form method="post" action="" commandName="counter">
-    <table>
-    <tr>
-        <td><form:hidden path="idCounter"/>
-    </tr>
-    <tr>
-        <td><form:label path="water"><spring:message code="price.water"/> m3</form:label></td>
-        <td><form:input path="water" /></td>
-        <td><form:errors path="water"/></td>
-    </tr>
-    <tr>
-        <td><form:label path="gas"><spring:message code="price.gas"/> m3</form:label></td>
-        <td><form:input path="gas" /></td>
-        <td><form:errors path="gas"/></td>
-    </tr>
-    <tr>
-        <td><form:label path="current"><spring:message code="price.current"/> kWh</form:label></td>
-        <td><form:input path="current" /></td>
-        <td><form:errors path="current"/></td>
-    </tr>
-    <tr>
-        <td><form:label path="energy"><spring:message code="price.energy"/> kJ</form:label></td>
-        <td><form:input path="energy" /></td>
-        <td><form:errors path="energy"/></td>
-    </tr>
-    <tr>
-        <td>
-        	<c:if test="${update==true}">
-            	<input type="submit" value="<spring:message code="price.submit"/>"/>
-        	</c:if>
-        </td>
-    </tr>
-</table> 
-</form:form>
+<a>DO zatwierdzenia</a>
 <table style="width: 100%">
 <tr>
+	<th>ID USER</th>
+    <th><spring:message code="price.water"/></th>
+    <th><spring:message code="price.gas"/></th>
+    <th><spring:message code="price.current"/></th>
+    <th><spring:message code="price.energy"/></th>
+    <th><spring:message code="price.date"/></th>
+</tr>
+<c:forEach items="${confirmList}" var="counters">
+    <tr>
+    	<td align="center">${counters.idFlat} </td>
+        <td align="center">${counters.water} </td>
+        <td align="center">${counters.gas} </td>
+        <td align="center">${counters.current} </td>
+        <td align="center">${counters.energy} </td>
+        <td align="center">${counters.ryczalt} </td>
+        <td align="center">${counters.modDate} </td>
+        <td><a href="/app/admin/counters/confirm?idUser=${counters.idCounter}">CONFIRM</a></td>
+    </tr>
+</c:forEach>
+</table>
+</br></br>
+<a>DO ryczaltowania</a>
+<table style="width: 100%">
+<tr>
+	<th>ID USER</th>
     <th><spring:message code="price.water"/></th>
     <th><spring:message code="price.gas"/></th>
     <th><spring:message code="price.current"/></th>
@@ -53,14 +45,18 @@
     <th><spring:message code="counter.ryczalt"/></th>
     <th><spring:message code="price.date"/></th>
 </tr>
-<c:forEach items="${counterList}" var="counters">
+<c:forEach items="${ryczaltList}" var="counters">
     <tr>
+    	<td align="center">${counters.idFlat} </td>
         <td align="center">${counters.water} </td>
         <td align="center">${counters.gas} </td>
         <td align="center">${counters.current} </td>
         <td align="center">${counters.energy} </td>
         <td align="center">${counters.ryczalt} </td>
         <td align="center">${counters.modDate} </td>
+        <c:if test="${update==true}">
+            	<td><a href="/app/admin/ryczalt?idUser=${counters.idFlat}&idCounter=${counters.idCounter}">RYCZALT</a></td>
+        </c:if>
     </tr>
 </c:forEach>
 </table>
