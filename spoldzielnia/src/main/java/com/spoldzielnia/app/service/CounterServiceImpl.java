@@ -34,7 +34,16 @@ public class CounterServiceImpl implements CounterService {
 
 	@Override
 	public Counters getActiveCounter(int idFlat) {
-		return counterDAO.getActiveCounter(idFlat);
+		Counters active=counterDAO.getActiveCounter(idFlat);
+		if(active.getIdCounter()<=0)
+		{
+			List<Counters> countersy = listMyCounter(idFlat);
+			if(countersy.size()>0)
+			{
+				active = countersy.get(0);
+			}
+		}
+		return active;
 	}
 
 	@Override

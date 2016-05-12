@@ -29,6 +29,8 @@ public class Counters {
 	private int status;	
 	private int idFlat;
 	
+	private boolean ryczalt;
+	
 	@Temporal(TemporalType.DATE)
 	private Date modDate;
 
@@ -94,6 +96,14 @@ public class Counters {
 
 	public void setIdFlat(int idFlat) {
 		this.idFlat = idFlat;
+	}
+
+	public boolean isRyczalt() {
+		return ryczalt;
+	}
+
+	public void setRyczalt(boolean ryczalt) {
+		this.ryczalt = ryczalt;
 	}
 
 

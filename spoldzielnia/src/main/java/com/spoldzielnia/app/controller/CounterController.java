@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,13 +41,17 @@ public class CounterController {
 	@Autowired
 	CounterService counterService;
 	
+	@Autowired
+	UserService userService;
+	
 	@RequestMapping(value = "/counters", method = RequestMethod.GET)
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {
-		map.put("counterList",counterService.listMyCounter(1));
-		map.put("counter", counterService.getActiveCounter(1));
+		
+		map.put("counterList",counterService.listMyCounter(getIdUser()));
+		map.put("counter", counterService.getActiveCounter(getIdUser()));
 		boolean visibleButton = true;
 		if(new Date().getDate()>10)visibleButton=false;
-		for(Counters counter:counterService.listMyCounter(1))
+		for(Counters counter:counterService.listMyCounter(getIdUser()))
 		{
 			if(counter.getModDate().getMonth()==new Date().getMonth()
 				&& counter.getModDate().getYear()==new Date().getYear()) visibleButton=false;
@@ -59,8 +65,18 @@ public class CounterController {
 	
 	@RequestMapping(value = "/counters", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("counter") Counters counter) {
-			counter.setIdFlat(1);
+			counter.setIdFlat(getIdUser());
 			counterService.addCounter(counter);
 			return "redirect:counters";
+	}
+	
+	private int getIdUser()
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName(); //get logged in username
+	      System.out.println("ZALOGOWANYYYYYYYYYYYYYYYYYYYYYYYYYY: "+name);
+	      int id = userService.getUser(name).getIdUser();
+	      System.out.println("ID usera: "+id);
+	      return id;
 	}
 }

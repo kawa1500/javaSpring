@@ -50,7 +50,6 @@
     <th><spring:message code="price.gas"/></th>
     <th><spring:message code="price.current"/></th>
     <th><spring:message code="price.energy"/></th>
-    <th><spring:message code="price.intercom"/></th>
     <th><spring:message code="price.date"/></th>
 </tr>
 <c:forEach items="${counterList}" var="counters">
@@ -59,7 +58,6 @@
         <td align="center">${counters.gas} </td>
         <td align="center">${counters.current} </td>
         <td align="center">${counters.energy} </td>
-        <td align="center">${counters.idFlat} </td>
         <td align="center">${counters.modDate} </td>
     </tr>
 </c:forEach>

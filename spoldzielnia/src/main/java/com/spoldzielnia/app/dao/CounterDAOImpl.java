@@ -22,7 +22,7 @@ public class CounterDAOImpl implements CounterDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Counters> listMyCounter(int ifFlat) {
-		String sql="from Counters where status<1";
+		String sql="from Counters where status<1 order by modDate desc";
 		return sessionFactory.getCurrentSession().createQuery(sql).list();
 	}
 
