@@ -85,4 +85,9 @@
         <put-attribute name="body" value="/WEB-INF/views/adminCounters.jsp" />
     </definition>
 
+	<definition name="bills" extends="base.definition">
+        <put-attribute name="title" value="Manage Bills" />
+        <put-attribute name="body" value="/WEB-INF/views/bills.jsp" />
+    </definition>
+    
 </tiles-definitions>
