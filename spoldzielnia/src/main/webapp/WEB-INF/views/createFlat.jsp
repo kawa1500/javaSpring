@@ -33,7 +33,16 @@
         <td><form:input path="tenantNumber" /></td>
         <td><form:errors path="tenantNumber"/></td>
     </tr>
-      
+    
+    <tr>
+		<td><form:label path="building"><spring:message code="label.building"/></form:label></td>
+		<td><form:select path="building">
+				<c:forEach items="${buildingList}" var="building">
+        			<option value="${idBuilding}" ${idBuilding == selectedBuilding ? 'selected="selected"' : ''}>${buildingStreet}</option>
+   				</c:forEach>
+		</form:select></td>
+		<td><form:errors path="building"/></td>
+	</tr> 
      	<td>
 			<c:if test="${flat.idFlat<=0}">
             	<input type="submit" value="<spring:message code="flat.add"/>"/>

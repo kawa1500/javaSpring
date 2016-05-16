@@ -1,6 +1,8 @@
 package com.spoldzielnia.app.controller;
 
 import java.util.Map;
+
+import javax.persistence.ManyToOne;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spoldzielnia.app.model.Building;
 import com.spoldzielnia.app.model.Flat;
+import com.spoldzielnia.app.service.BuildingService;
 import com.spoldzielnia.app.service.FlatService;
 import com.spoldzielnia.app.validators.FlatValidator;
 
@@ -20,6 +24,9 @@ import com.spoldzielnia.app.validators.FlatValidator;
 @Controller
 @RequestMapping("/admin")
 public class FlatController {
+	
+	@Autowired
+	BuildingService buildingService;
 	
 	@Autowired
 	FlatService flatService;
@@ -38,7 +45,7 @@ public class FlatController {
 		{flat=new Flat();}
 		
 		map.put("flat", flat);
-
+		map.put("buildingList", buildingService.listBuilding());
 		return "createFlat";
 	}
 	
