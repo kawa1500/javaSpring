@@ -42,4 +42,10 @@ public class SendingMail {
 				"Nowe has³o:"+passUser.getNewPassword()+"\n";
 		myMail.sendMail(Mail, "Zmiana has³a", msg);
 	}
+	
+	public void createBill(Bills bill, String PathFile, String Mail){
+		String msg="Wystawiono fakturê\n\n"+
+				"Na kwotê:"+bill.getCost()+" z³";
+		myMail.sendMailWithPdf(PathFile, Mail, "Faktura", msg);
+	}
 }

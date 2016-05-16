@@ -13,6 +13,8 @@ import com.spoldzielnia.app.service.BillsService;
 import com.spoldzielnia.app.service.CounterService;
 import com.spoldzielnia.app.service.PriceService;
 import com.spoldzielnia.app.service.UserService;
+import com.spoldzielnia.app.utils.document.PdfCreator;
+import com.spoldzielnia.app.utils.mail.SendingMail;
 
 public class CronController {
 
@@ -34,7 +36,7 @@ public class CronController {
 //		//wpisaæ metodê do wysy³ania powiadomieñ do u¿ytkowników o wype³nieniu liczników
 //    }
 	
-	@Scheduled(cron="0 15 16 16 * ?")
+	@Scheduled(cron="0 48 16 16 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
@@ -121,6 +123,8 @@ public class CronController {
 		myBill.setIdFlat(counter.getIdFlat());
 		myBill.setModDate(new Date());
 		billService.add(myBill);
+		//SendingMail mailSend = new SendingMail("en");
+		//mailSend.createBill(myBill, PdfCreator.Generate(myBill,priceService.getActivePrice()), userService.getUser(myBill.getIdFlat()).getEmail());
 	}
 	
 	private Double zaokraglij(Double value)

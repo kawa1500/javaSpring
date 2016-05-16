@@ -72,6 +72,14 @@ public class BillsController {
 		
 		return "bills";
 	}
+	
+	@RequestMapping(value = "/admin/bills", method = RequestMethod.GET)
+	public String viewBills(Map<String,Object> map,HttpServletRequest request ) {
+		
+		map.put("billsList",billsService.listBills(1));
+		
+		return "adminBills";
+	}
 
 	@RequestMapping(value = "/user/billsView", method = RequestMethod.GET)
 	public void payBills(Map<String,Object> map,HttpServletRequest request, HttpServletResponse response ) throws IOException {
