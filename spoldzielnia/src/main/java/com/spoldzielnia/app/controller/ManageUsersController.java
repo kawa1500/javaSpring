@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 import com.spoldzielnia.app.service.UserService;
+import com.spoldzielnia.app.utils.mail.MailMail;
+import com.spoldzielnia.app.utils.mail.SendingMail;
 import com.spoldzielnia.app.validators.UserValidator;
 
 /**
@@ -30,6 +34,7 @@ public class ManageUsersController {
 	UserService userService;
 	
 	UserValidator userValidator = new UserValidator();
+	SendingMail sendMail;
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {
@@ -41,14 +46,14 @@ public class ManageUsersController {
 		{
 			user=userService.getUser(userID);
 			user.setPassword("");
-
+			
 			System.out.println("ILOSC Ról: "+user.getUserRole().size());	}
 		else
 		{
 			user=new User();
 		}
 		
-		//map.put("userRoleList",userService.listUserRole());
+		map.put("userRoleList",userService.listUserRole());
 		map.put("user", user);
 		
 
@@ -57,21 +62,35 @@ public class ManageUsersController {
 	
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user") User user, Model model, BindingResult result) {
+	public String addUser(@ModelAttribute("user") User user, Model model,Map<String,Object> map, BindingResult result, HttpServletRequest request) {
 		
 		userValidator.validate(user, result);
-
+		String language = request.getLocale().toString();
 		if(result.getErrorCount()==0)
 		{
 			if (user.getIdUser()==0)
 			{
-				userService.addUser(user);
+				User memory = userService.getUser(user.getLogin());
+				if(memory!=null)
+				{
+					result.rejectValue("login", "error.login.exist");
+					map.put("userRoleList",userService.listUserRole());
+					return "createUser";
+				}
+				else
+				{
+					SendingMail mailSend = new SendingMail(language);
+					mailSend.createUser(user);
+					System.out.println("JEEEEEEEZYK: "+language);
+					userService.addUser(user);
+					return "redirect:manageUsers";
+				}	
 			}
 			else
 			{
 				User userEdit = userService.getUser(user.getIdUser());
 				System.out.println("ILOSC Rólaaaaaaaaaaaa: "+userEdit.getUserRole().size());
-				user.setUserRole(userEdit.getUserRole());
+				if(user.getUserRole()==null)user.setUserRole(userEdit.getUserRole());
 				if(user.getPassword().isEmpty())
 				{
 					user.setPassword(userEdit.getPassword());
@@ -81,11 +100,13 @@ public class ManageUsersController {
 					user.setPassword(userService.hashPassword(user.getPassword()));
 				}
 				userService.editUser(user);
+				return "redirect:manageUsers";
 			}
-			return "redirect:manageUsers";
+			
 		}
 		else
 		{
+			map.put("userRoleList",userService.listUserRole());
 			return "createUser";
 		}
 		

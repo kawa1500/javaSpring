@@ -16,7 +16,10 @@
 		<div class="error">${error}</div>
 	</c:if>
 	<c:if test="${not empty msg}">
-		<div class="msg">${msg}</div>
+		<div class="msg">${msg}
+		<a href="/app/"><spring:message code="home.title"/></a>
+		</div>
+		
 	</c:if>
 		
     <form class="form" method="POST" action="<c:url value='j_spring_security_check' />">

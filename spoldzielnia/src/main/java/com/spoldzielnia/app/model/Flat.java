@@ -20,7 +20,7 @@ public class Flat {
 	private  String flatNumber;
 	private String flatSurface;
 	private String tenantNumber;
-	private boolean enabled;
+
 
 	public int getIdFlat() {
 		return idFlat;
@@ -46,13 +46,7 @@ public class Flat {
 	public void setTenantNumber(String tenantNumber) {
 		this.tenantNumber = tenantNumber;
 	}
-	
-	public boolean isEnabled() {
-		return enabled;
-	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+
 	
 	public Building getBuilding() {
 		return building;

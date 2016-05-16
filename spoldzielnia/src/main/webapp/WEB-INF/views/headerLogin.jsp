@@ -23,7 +23,7 @@
  
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
 		<h4 style="float: right; right:20%;">
-			Welcome : ${pageContext.request.userPrincipal.name} | <a
+			<spring:message code="home.welcome"/>: ${pageContext.request.userPrincipal.name} | <a
 				href="javascript:formSubmit()"> Logout</a>
 				
 		</h4>

@@ -10,14 +10,13 @@
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
         <put-attribute name="headerLogin" value="/WEB-INF/views/headerLogin.jsp" />
-        <put-attribute name="menu" value="" />
+        <put-attribute name="menu" value="/WEB-INF/views/menuUser.jsp" />
         <put-attribute name="body" value="" />
     </definition>
  
     <definition name="admin" extends="base.definition">
         <put-attribute name="title" value="Admin Profile" />
         <put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="home" extends="base.definition">
@@ -29,55 +28,66 @@
     <definition name="createUser" extends="base.definition">
         <put-attribute name="title" value="Create User" />
         <put-attribute name="body" value="/WEB-INF/views/createUser.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="createBuilding" extends="base.definition">
         <put-attribute name="title" value="Create Building" />
         <put-attribute name="body" value="/WEB-INF/views/createBuilding.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="createFlat" extends="base.definition">
         <put-attribute name="title" value="Create Flat" />
         <put-attribute name="body" value="/WEB-INF/views/createFlat.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="manageUsers" extends="base.definition">
         <put-attribute name="title" value="Manage Users" />
         <put-attribute name="body" value="/WEB-INF/views/manageUsers.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="createRole" extends="base.definition">
         <put-attribute name="title" value="Create Roles" />
         <put-attribute name="body" value="/WEB-INF/views/createRole.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
     
     <definition name="user" extends="base.definition">
         <put-attribute name="title" value="User Home" />
         <put-attribute name="body" value="/WEB-INF/views/user.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuUser.jsp" />
     </definition>
     
     <definition name="changePassword" extends="base.definition">
         <put-attribute name="title" value="Change Password" />
         <put-attribute name="body" value="/WEB-INF/views/changePassword.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuUser.jsp" />
     </definition>
+    
     <definition name="manageBuilding" extends="base.definition">
         <put-attribute name="title" value="Manage Building" />
         <put-attribute name="body" value="/WEB-INF/views/manageBuilding.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
     </definition>
 
 	<definition name="manageFlat" extends="base.definition">
         <put-attribute name="title" value="Manage Flat" />
         <put-attribute name="body" value="/WEB-INF/views/manageFlat.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/menuAdmin.jsp" />
-
+    </definition>
+    
+    <definition name="prices" extends="base.definition">
+        <put-attribute name="title" value="Manage Prices" />
+        <put-attribute name="body" value="/WEB-INF/views/prices.jsp" />
+    </definition>
+    
+    <definition name="counters" extends="base.definition">
+        <put-attribute name="title" value="Manage Counters" />
+        <put-attribute name="body" value="/WEB-INF/views/counters.jsp" />
+    </definition>
+    
+    <definition name="adminCounters" extends="base.definition">
+        <put-attribute name="title" value="Manage Counters" />
+        <put-attribute name="body" value="/WEB-INF/views/adminCounters.jsp" />
     </definition>
 
+	<definition name="bills" extends="base.definition">
+        <put-attribute name="title" value="Manage Bills" />
+        <put-attribute name="body" value="/WEB-INF/views/bills.jsp" />
+    </definition>
+    
 </tiles-definitions>

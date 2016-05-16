@@ -6,10 +6,10 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 <%@page session="true"%>
 
-	<h3>Aplikacja spółdzielni mieszkaniowej SPRING</br>
-	Dane kontaktowe</br>
-	Jan kowalski</br>
-	Telefon: +48 42 632 00 00</br>
-	Email: biuro.spring@spring.com</h3>
+	<h3><spring:message code="title1"/></br>
+	<spring:message code="title2"/></br>
+	<spring:message code="title3"/></br>
+	<spring:message code="title4"/></br>
+	<spring:message code="title5"/></h3>
 		
   

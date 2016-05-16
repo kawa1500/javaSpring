@@ -6,7 +6,7 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 <%@page session="true"%>
 
-<spring:message code="home.title"/>
+<a href="/app/"><spring:message code="home.title"/></a>
     	<span style="float: right">
   		<a href="?lang=pl">pl</a> | <a href="?lang=en">en</a> | <a href="?lang=de">de</a>
   	</span>
