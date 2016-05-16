@@ -3,6 +3,7 @@ package com.spoldzielnia.app.utils.mail;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.spoldzielnia.app.model.Bills;
 import com.spoldzielnia.app.model.User;
 
 public class SendingMail {
@@ -30,5 +31,10 @@ public class SendingMail {
 					"Imiê:"+user.getPassword()+"\n\n"+
 					"Jeœli wystêpuj¹ tu jakieœ b³êdy odpisz";
 		myMail.sendMail(user.getEmail(), "Rejestracja u¿ytkownika", msg);
+	}
+	
+	public void createBill(User user, Bills bill)
+	{
+		 
 	}
 }

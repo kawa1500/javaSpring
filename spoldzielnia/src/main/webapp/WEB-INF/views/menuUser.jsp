@@ -29,6 +29,7 @@
 	<sec:authorize ifAllGranted="ROLE_USER">
   		<tr><td><a href="/app/user/changePassword"><spring:message code="user.change"/></a></td></tr>
   		<tr><td><a href="/app/user/counters"><spring:message code="menu.user.counters"/></a></td></tr>
+  		<tr><td><a href="/app/user/bills"><spring:message code="menu.user.bills"/></a></td></tr>
 	</sec:authorize>
 	
 </table>

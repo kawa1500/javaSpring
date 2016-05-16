@@ -147,7 +147,11 @@ public class PdfCreator {
             pdfTable.addCell(""+bill.getOther());
 
             document.add(pdfTable);
-
+            
+            Paragraph paragraph3 = new Paragraph("Cena ca³kowita :"+bill.getCost()+" z³",new Font(Font.FontFamily.TIMES_ROMAN, 22,
+            	      Font.BOLD));
+              paragraph3.setAlignment(Paragraph.ALIGN_CENTER);
+              document.add(paragraph3);
             document.close();
             file.close();
             
