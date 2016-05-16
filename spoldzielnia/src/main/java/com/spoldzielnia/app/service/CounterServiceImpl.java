@@ -56,4 +56,17 @@ public class CounterServiceImpl implements CounterService {
 		return counterDAO.get(idCounter);
 	}
 
+	@Override
+	public Counters getLastCounters(Counters nowCounter) {
+		List<Counters> listMyUser = counterDAO.listMyCounter(nowCounter.getIdFlat());
+		if(listMyUser.size()>1)
+		{
+			return listMyUser.get(1);
+		}
+		else
+		{
+			return new Counters();
+		}
+	}
+
 }

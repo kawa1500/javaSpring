@@ -34,7 +34,6 @@ public class ManageUsersController {
 	UserService userService;
 	
 	UserValidator userValidator = new UserValidator();
-	SendingMail sendMail;
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {

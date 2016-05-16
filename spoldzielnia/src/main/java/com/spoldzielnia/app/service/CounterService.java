@@ -10,4 +10,5 @@ public interface CounterService {
 	public List<Counters> listMyCounter(int ifFlat);
 	public Counters getActiveCounter(int idFlat);
 	public void editCounter(Counters user);
+	public Counters getLastCounters(Counters nowCounter);
 }
