@@ -4,11 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name="building")
 public class Building {
+	
+	@OneToMany(mappedBy="building")
+	private List<Flat> flatList;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idBuilding;

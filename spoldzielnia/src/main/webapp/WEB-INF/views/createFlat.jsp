@@ -33,7 +33,8 @@
         <td><form:input path="tenantNumber" /></td>
         <td><form:errors path="tenantNumber"/></td>
     </tr>
-      
+    
+
      	<td>
 			<c:if test="${flat.idFlat<=0}">
             	<input type="submit" value="<spring:message code="flat.add"/>"/>
