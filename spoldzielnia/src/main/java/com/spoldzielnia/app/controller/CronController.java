@@ -36,7 +36,7 @@ public class CronController {
 //		//wpisaæ metodê do wysy³ania powiadomieñ do u¿ytkowników o wype³nieniu liczników
 //    }
 	
-	@Scheduled(cron="0 48 16 16 * ?")
+	@Scheduled(cron="0 8 17 16 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
@@ -123,8 +123,8 @@ public class CronController {
 		myBill.setIdFlat(counter.getIdFlat());
 		myBill.setModDate(new Date());
 		billService.add(myBill);
-		//SendingMail mailSend = new SendingMail("en");
-		//mailSend.createBill(myBill, PdfCreator.Generate(myBill,priceService.getActivePrice()), userService.getUser(myBill.getIdFlat()).getEmail());
+		SendingMail mailSend = new SendingMail("en");
+		mailSend.createBill(myBill, PdfCreator.Generate(myBill,actualPrice), userService.getUser(myBill.getIdFlat()).getEmail());
 	}
 	
 	private Double zaokraglij(Double value)
