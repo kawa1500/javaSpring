@@ -79,15 +79,15 @@
         <put-attribute name="title" value="Manage Counters" />
         <put-attribute name="body" value="/WEB-INF/views/counters.jsp" />
     </definition>
-    
-    <definition name="adminCounters" extends="base.definition">
-        <put-attribute name="title" value="Manage Counters" />
-        <put-attribute name="body" value="/WEB-INF/views/adminCounters.jsp" />
-    </definition>
 
 	<definition name="bills" extends="base.definition">
         <put-attribute name="title" value="Manage Bills" />
         <put-attribute name="body" value="/WEB-INF/views/bills.jsp" />
+    </definition>
+    
+    <definition name="adminBills" extends="base.definition">
+        <put-attribute name="title" value="Manage Bills" />
+        <put-attribute name="body" value="/WEB-INF/views/adminBills.jsp" />
     </definition>
     
 </tiles-definitions>

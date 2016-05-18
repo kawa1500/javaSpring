@@ -23,6 +23,7 @@ import com.spoldzielnia.app.model.PasswordUser;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.UserService;
 import com.spoldzielnia.app.utils.mail.MailMail;
+import com.spoldzielnia.app.utils.mail.SendingMail;
 import com.spoldzielnia.app.validators.PasswordUserValidator;
 
 
@@ -61,9 +62,12 @@ public class UserController {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			if(encoder.matches(user.getOldPassword(), user.getOldPasswordHash()))
 			{	
+				System.out.println("Nowe has³o:"+user.getNewPassword());
 				myUser.setPassword(user.getNewPassword());
 				myUser.setPassword(userService.hashPassword(myUser.getPassword()));
 				userService.editUser(myUser);
+				SendingMail mailSend = new SendingMail("en");
+				mailSend.changePassword(user, myUser.getEmail());
 				return "user";
 			}
 			else

@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService{
 
 	@Transactional
 	public void editUser(User user) {
-		user.setPassword(hashPassword(user.getPassword()));
+		//user.setPassword(hashPassword(user.getPassword()));
 		//User user1=userDAO.getUser(user.getIdUser());
 		System.out.println("SUMA Ró1111qw : "+user.getUserRole().size());
 
