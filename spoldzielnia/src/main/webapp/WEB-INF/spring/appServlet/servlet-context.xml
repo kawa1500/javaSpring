@@ -16,6 +16,9 @@
 	        <beans:set>
 	            <beans:bean class="com.spoldzielnia.app.utils.UserRoleConverter"/>
 	            <beans:bean class="com.spoldzielnia.app.utils.UserRoleListConverter"/>
+	 			<beans:bean class="com.spoldzielnia.app.utils.BuildingListConverter"/>
+				<beans:bean class="com.spoldzielnia.app.utils.BuildingConverter"/>
+	
 	        </beans:set>
 	    </beans:property>
 	</beans:bean>

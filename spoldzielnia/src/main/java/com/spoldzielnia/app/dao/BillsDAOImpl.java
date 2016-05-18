@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spoldzielnia.app.model.Bills;
-import com.spoldzielnia.app.model.Counters;
+
 
 @Repository
 public class BillsDAOImpl implements BillsDAO{
