@@ -1,5 +1,6 @@
 package com.spoldzielnia.app.dao;
 
+
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spoldzielnia.app.model.Building;
+
 
 
 @Repository
@@ -44,5 +46,6 @@ public class BuildingDAOImpl implements BuildingDAO{
 	public void editBuilding(Building building) {
 		sessionFactory.getCurrentSession().update(building);
 	}
+
 
 }

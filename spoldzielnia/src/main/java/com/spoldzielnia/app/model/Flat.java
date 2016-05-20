@@ -1,18 +1,23 @@
 package com.spoldzielnia.app.model;
 
+
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="flat")
 public class Flat {
-
-	@ManyToOne
-	private Building building;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,8 +25,13 @@ public class Flat {
 	private  String flatNumber;
 	private String flatSurface;
 	private String tenantNumber;
-
-
+	
+	//@OneToOne(mappedBy = "flat")
+	//private User user;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Building> building = new HashSet<Building>(0);
+	
 	public int getIdFlat() {
 		return idFlat;
 	}
@@ -46,14 +56,18 @@ public class Flat {
 	public void setTenantNumber(String tenantNumber) {
 		this.tenantNumber = tenantNumber;
 	}
-
 	
-	public Building getBuilding() {
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "flat_building", joinColumns = {@JoinColumn(name = "idFlat", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "idBuilding", nullable = false, updatable = false)})
+	
+	public Set<Building> getBuilding() {
 		return building;
 	}
-	public void setBuilding(Building building) {
+	public void setBuilding(Set<Building> building) {
 		this.building = building;
 	}
+	
 
 }
 	

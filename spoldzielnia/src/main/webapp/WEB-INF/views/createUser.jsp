@@ -50,13 +50,14 @@
         <td><form:input path="phone" /></td>
         <td><form:errors path="phone"/></td>
     </tr>
+    
     <tr>
 		<td><form:label path="userRole"></form:label></td>
 		<td><form:select path="userRole" multiple="true">
 				<form:options items="${userRoleList}" itemValue="id" itemLabel="role"/>
 		</form:select></td>
 		<td><form:errors path="userRole"/></td>
-	</tr>
+	
     <tr>
         <td>
 			<c:if test="${user.idUser<=0}">

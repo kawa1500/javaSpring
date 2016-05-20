@@ -1,7 +1,6 @@
 package com.spoldzielnia.app.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +32,9 @@ public class User {
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	
+	//@OneToOne(cascade = CascadeType.ALL)
+	//private Flat flat; 
 	
 	public String getFirstName() {
 		return firstName;
@@ -83,9 +85,17 @@ public class User {
 		String result = "name: "+firstName+" ,surname: "+lastName+" ,email: "+email+" ,PESEL: "+PESEL+" ,phone: "+phone+" ,password: "+password;
 		return result;
 	}
+	/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_userrole_flat", joinColumns = {@JoinColumn(name = "user_iduser", nullable = false, updatable = false), 
+			@JoinColumn(name = "idFlat", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "userrole_id", nullable = false, updatable = false) })
+	*/
+		@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_userrole", joinColumns = {@JoinColumn(name = "user_iduser", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "userrole_id", nullable = false, updatable = false) })
+	
+
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
