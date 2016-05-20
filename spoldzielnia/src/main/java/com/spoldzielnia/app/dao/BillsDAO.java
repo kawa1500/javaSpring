@@ -3,11 +3,12 @@ package com.spoldzielnia.app.dao;
 import java.util.List;
 
 import com.spoldzielnia.app.model.Bills;
+import com.spoldzielnia.app.model.Counters;
 
 public interface BillsDAO {
 	public void add(Bills bill);
 	public void edit(Bills bill);
-	public List<Bills> listForUser(int idUser);
+	public Bills listForUser(Counters counter);
 	public List<Bills> listBills(int status);
 	public Bills get(int idBills);
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spoldzielnia.app.dao.CounterDAO;
 import com.spoldzielnia.app.model.Counters;
+import com.spoldzielnia.app.model.User;
 
 @Service
 @Transactional
@@ -19,7 +20,7 @@ public class CounterServiceImpl implements CounterService {
 	
 	@Override
 	public void addCounter(Counters counter) {
-		Counters last = getActiveCounter(counter.getIdFlat());
+		Counters last = getActiveCounter(counter.getUser());
 		last.setStatus(0);
 		if(last!=null && last.getIdCounter()>0)counterDAO.editCounter(last);
 		counter.setStatus(1);
@@ -28,16 +29,16 @@ public class CounterServiceImpl implements CounterService {
 	}
 
 	@Override
-	public List<Counters> listMyCounter(int ifFlat) {
-		return counterDAO.listMyCounter(ifFlat);
+	public List<Counters> listMyCounter(User user) {
+		return counterDAO.listMyCounter(user);
 	}
 
 	@Override
-	public Counters getActiveCounter(int idFlat) {
-		Counters active=counterDAO.getActiveCounter(idFlat);
+	public Counters getActiveCounter(User user) {
+		Counters active=counterDAO.getActiveCounter(user);
 		if(active.getIdCounter()<=0)
 		{
-			List<Counters> countersy = listMyCounter(idFlat);
+			List<Counters> countersy = listMyCounter(user);
 			if(countersy.size()>0)
 			{
 				active = countersy.get(0);
@@ -58,7 +59,7 @@ public class CounterServiceImpl implements CounterService {
 
 	@Override
 	public Counters getLastCounters(Counters nowCounter) {
-		List<Counters> listMyUser = counterDAO.listMyCounter(nowCounter.getIdFlat());
+		List<Counters> listMyUser = counterDAO.listMyCounter(nowCounter.getUser());
 		if(listMyUser.size()>1)
 		{
 			return listMyUser.get(1);
