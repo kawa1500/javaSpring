@@ -36,26 +36,26 @@ public class CronController {
 //		//wpisaæ metodê do wysy³ania powiadomieñ do u¿ytkowników o wype³nieniu liczników
 //    }
 	
-	@Scheduled(cron="0 8 17 16 * ?")
+	@Scheduled(cron="0 3 22 16 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
 		{
 			System.out.println("wyszukiwanie licznika dla usera: "+user.getIdUser());
-			Counters count = counterService.getActiveCounter(user.getIdUser());
+			Counters count = counterService.getActiveCounter(user);
 			if(count.getIdCounter()>0)
 			{
 				if(count.getModDate().getMonth()!=new Date().getMonth())
 				{
-					ryczaltuj(count.getIdFlat(), count.getIdCounter());
+					ryczaltuj(user, count.getIdCounter());
 				}
 			}
 			else
 			{
-				ryczaltuj(count.getIdFlat(), count.getIdCounter());
+				ryczaltuj(user, count.getIdCounter());
 			}
 			
-			Counters countF = counterService.getActiveCounter(user.getIdUser());
+			Counters countF = counterService.getActiveCounter(user);
 			if(countF.getIdCounter()>0)
 			{
 				if(countF.getModDate().getMonth()==new Date().getMonth() && countF.getStatus()==1)
@@ -66,14 +66,14 @@ public class CronController {
 				}
 			}
 			
-			System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+count.getIdFlat());
+			System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+user.getIdUser());
 		}
     }
 	
-	private void ryczaltuj(int idUser, int idCounter)
+	private void ryczaltuj(User user, int idCounter)
 	{
 		Prices actualPrices= priceService.getActivePrice();
-		System.out.println("Dane wejœciowe: "+idUser+"|"+idCounter);
+		System.out.println("Dane wejœciowe: "+user.getIdUser()+"|"+idCounter);
 		if(idCounter<1){
 			Counters lastCounter = new Counters();
 			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
@@ -81,13 +81,13 @@ public class CronController {
 			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
 			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
 			lastCounter.setRyczalt(true);
-			lastCounter.setIdFlat(idUser);
+			lastCounter.setUser(user);
 			counterService.addCounter(lastCounter);
 			System.out.println("TWORZENIE LICZNIKÓW");
 		}
 		else
 		{
-			Counters lastCounter = counterService.getActiveCounter(idUser);
+			Counters lastCounter = counterService.getActiveCounter(user);
 			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
 			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
 			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
@@ -120,11 +120,11 @@ public class CronController {
 		myBill.setSewage(zaokraglij(actualPrice.getSewage()*myBill.getWaterValue()));
 		myBill.setOther(zaokraglij(actualPrice.getOther()*myBill.getOsoby()));
 		myBill.setCost(zaokraglij(myBill.getCurrent()+myBill.getEnergy()+myBill.getGas()+myBill.getIntercom()+myBill.getOther()+myBill.getSewage()+myBill.getTrash()+myBill.getWater()));
-		myBill.setIdFlat(counter.getIdFlat());
+		myBill.setCounters(counter);
 		myBill.setModDate(new Date());
 		billService.add(myBill);
 		SendingMail mailSend = new SendingMail("en");
-		mailSend.createBill(myBill, PdfCreator.Generate(myBill,actualPrice), userService.getUser(myBill.getIdFlat()).getEmail());
+		mailSend.createBill(myBill, PdfCreator.Generate(myBill,actualPrice), counter.getUser().getEmail());
 	}
 	
 	private Double zaokraglij(Double value)

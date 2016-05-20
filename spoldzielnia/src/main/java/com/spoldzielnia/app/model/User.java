@@ -33,8 +33,13 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	
+<<<<<<< HEAD
 	//@OneToOne(cascade = CascadeType.ALL)
 	//private Flat flat; 
+=======
+	@OneToMany(mappedBy="user")
+	private List<Counters> userCounters;
+>>>>>>> bartek
 	
 	public String getFirstName() {
 		return firstName;
@@ -107,6 +112,12 @@ public class User {
 	}
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	public List<Counters> getUserCounters() {
+		return userCounters;
+	}
+	public void setUserCounters(List<Counters> userCounters) {
+		this.userCounters = userCounters;
 	}
 	
 }

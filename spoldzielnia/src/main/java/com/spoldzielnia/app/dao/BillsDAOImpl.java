@@ -15,10 +15,10 @@ public class BillsDAOImpl implements BillsDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@SuppressWarnings("unchecked")
-	public List<Bills> listForUser(int idUser) {
-		String sql="from Bills where idFlat=? order by modDate desc";
-		return sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, idUser).list();
+	
+	public Bills listForUser(Counters counter) {
+		String sql="from Bills where counters_idcounter=?";
+		return (Bills)sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, counter.getIdCounter()).list().get(0);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -2,10 +2,17 @@ package com.spoldzielnia.app.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< HEAD
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+>>>>>>> bartek
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,11 +41,13 @@ public class Bills {
 	private double cost;
 	
 	private int status;	
-	private int idFlat;
 	
 	@Temporal(TemporalType.DATE)
 	private Date modDate;
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Counters counters;
+	
 	public int getIdBills() {
 		return idBills;
 	}
@@ -159,14 +168,6 @@ public class Bills {
 		this.status = status;
 	}
 
-	public int getIdFlat() {
-		return idFlat;
-	}
-
-	public void setIdFlat(int idFlat) {
-		this.idFlat = idFlat;
-	}
-
 	public Date getModDate() {
 		return modDate;
 	}
@@ -181,6 +182,14 @@ public class Bills {
 
 	public void setCost(double cost) {
 		this.cost = cost;
+	}
+
+	public Counters getCounters() {
+		return counters;
+	}
+
+	public void setCounters(Counters counters) {
+		this.counters = counters;
 	}
 
 	
