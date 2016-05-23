@@ -22,6 +22,7 @@ public class BuildingDAOImpl implements BuildingDAO{
 		sessionFactory.getCurrentSession().save(building);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Building> listBuilding() {
 		String sql="from Building order by id";

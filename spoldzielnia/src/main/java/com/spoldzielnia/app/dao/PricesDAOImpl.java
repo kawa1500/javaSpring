@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spoldzielnia.app.model.Prices;
-import com.spoldzielnia.app.model.User;
 
 @Repository
 public class PricesDAOImpl implements PricesDAO{
@@ -37,6 +36,7 @@ public class PricesDAOImpl implements PricesDAO{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Prices> getAllPrices() {
 		String sql="from Prices where status<1";

@@ -1,7 +1,6 @@
 package com.spoldzielnia.app.dao;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -22,6 +21,7 @@ public class UserDAOImpl implements UserDAO{
 		sessionFactory.getCurrentSession().save(user);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> listUser() {
 		String sql="from User order by id";
@@ -52,6 +52,7 @@ public class UserDAOImpl implements UserDAO{
 		sessionFactory.getCurrentSession().save(userRole);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserRole> listUserRole() {
 		return sessionFactory.getCurrentSession().createQuery("from UserRole order by id").list();
@@ -101,11 +102,11 @@ public class UserDAOImpl implements UserDAO{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public UserRole listUserRoleForUser(int id) {
 		List<UserRole> userRole = new ArrayList<UserRole>();;
 		String sql="select * from UserRole as r join user_userrole as m on r.id=m.userrole_id where m.user_iduser="+id;
-		String hql="from UserRole ur, User iT where ur.id=iT.idUser";
 		userRole=sessionFactory.getCurrentSession().createQuery(sql).list();
 		return userRole.get(0);
 	}

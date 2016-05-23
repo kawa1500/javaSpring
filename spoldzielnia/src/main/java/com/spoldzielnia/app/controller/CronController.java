@@ -30,13 +30,8 @@ public class CronController {
 	@Autowired
 	BillsService billService;
 	
-//	@Scheduled(cron="0 12 16 16 * ?")
-//    public void rememberServiceMethod()
-//    {
-//		//wpisaæ metodê do wysy³ania powiadomieñ do u¿ytkowników o wype³nieniu liczników
-//    }
-	
-	@Scheduled(cron="0 3 22 16 * ?")
+	@SuppressWarnings("deprecation")
+	@Scheduled(cron="0 0 0 10 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
@@ -101,8 +96,6 @@ public class CronController {
 	private void generateBill(Counters counter)
 	{
 		Bills myBill = new Bills();
-		Double costTotal = 0.0;
-		Double actualCost = 0.0;
 		Counters lastCounterValue = counterService.getLastCounters(counter);
 		Prices actualPrice = priceService.getActivePrice();
 		myBill.setOsoby(1);
