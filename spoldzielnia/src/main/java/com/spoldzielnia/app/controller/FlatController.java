@@ -47,6 +47,7 @@ public class FlatController {
 		{flat=new Flat();}
 		
 		map.put("flat", flat);
+		System.out.println("Lista "+buildingService.listBuilding().size());
 		map.put("buildingList", buildingService.listBuilding());
 		return "createFlat";
 	}

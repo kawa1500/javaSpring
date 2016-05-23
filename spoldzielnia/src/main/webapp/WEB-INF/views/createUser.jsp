@@ -58,6 +58,15 @@
 		</form:select></td>
 		<td><form:errors path="userRole"/></td>
 	</tr>
+	<tr>
+		<td><form:label path="flat"></form:label></td>
+		<td><form:select path="flat" multiple="false">
+			<c:forEach var="flat" items="${flatList}" >
+        			<option value="${flat.idFlat}" label="${flat.building.buildingCity} ${flat.building.buildingStreet} ${flat.building.buildingNumber} ${flat.flatNumber}"/>
+    		</c:forEach>
+		</form:select></td>
+		<td><form:errors path="flat"/></td>
+	</tr>
     <tr>
         <td>
 			<c:if test="${user.idUser<=0}">

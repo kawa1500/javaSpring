@@ -71,7 +71,7 @@ public class ManageUsersController {
 			
 			
 		map.put("userRoleList",userService.listUserRole());
-//		map.put("flatList", flatService.listFlat());
+		map.put("flatList", flatService.listFlat());
 
 		map.put("user", user);
 		
