@@ -20,6 +20,7 @@
 	            <beans:bean class="com.spoldzielnia.app.utils.UserRoleListConverter"/>
 				<beans:bean class="com.spoldzielnia.app.utils.BuildingConverter"/>
 				<beans:bean class="com.spoldzielnia.app.utils.FlatConverter"/>
+
 	        </beans:set>
 	    </beans:property>
 	</beans:bean>

@@ -1,6 +1,7 @@
 package com.spoldzielnia.app.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,9 +34,12 @@ public class User {
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+	@OneToMany(mappedBy="user")
+	private List<Counters> userCounters;
 	
-	//@OneToOne(cascade = CascadeType.ALL)
-	//private Flat flat; 
+	@OneToOne(cascade = CascadeType.ALL)
+	private Flat flat;
 	
 	public String getFirstName() {
 		return firstName;
@@ -107,6 +112,18 @@ public class User {
 	}
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	public List<Counters> getUserCounters() {
+		return userCounters;
+	}
+	public void setUserCounters(List<Counters> userCounters) {
+		this.userCounters = userCounters;
+	}
+	public Flat getFlat() {
+		return flat;
+	}
+	public void setFlat(Flat flat) {
+		this.flat = flat;
 	}
 	
 }

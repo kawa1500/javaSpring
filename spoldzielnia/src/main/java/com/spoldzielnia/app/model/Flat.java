@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,18 +15,15 @@ public class Flat {
 	@ManyToOne
 	private Building building;
 	
-	public Building getBuilding() {
-		return building;
-	}
-	public void setBuilding(Building building) {
-		this.building = building;
-	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idFlat;
 	private  String flatNumber;
 	private String flatSurface;
 	private String tenantNumber;
+	
+	@OneToOne
+	private User user;
 	
 	public int getIdFlat() {
 		return idFlat;
@@ -50,6 +48,20 @@ public class Flat {
 	}
 	public void setTenantNumber(String tenantNumber) {
 		this.tenantNumber = tenantNumber;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Building getBuilding() {
+		return building;
+	}
+	public void setBuilding(Building building) {
+		this.building = building;
 	}
 
 }

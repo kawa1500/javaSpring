@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,13 +29,18 @@ public class Counters {
 	private double energy;
 	
 	private int status;	
-	private int idFlat;
 	
 	private boolean ryczalt;
 	
 	@Temporal(TemporalType.DATE)
 	private Date modDate;
+	
+	@ManyToOne
+	private User user;
 
+	@OneToOne(mappedBy="counters")
+	private Bills bills;
+	
 	public int getIdCounter() {
 		return idCounter;
 	}
@@ -87,20 +97,28 @@ public class Counters {
 		this.modDate = modDate;
 	}
 
-	public int getIdFlat() {
-		return idFlat;
-	}
-
-	public void setIdFlat(int idFlat) {
-		this.idFlat = idFlat;
-	}
-
 	public boolean isRyczalt() {
 		return ryczalt;
 	}
 
 	public void setRyczalt(boolean ryczalt) {
 		this.ryczalt = ryczalt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Bills getBills() {
+		return bills;
+	}
+
+	public void setBills(Bills bills) {
+		this.bills = bills;
 	}
 
 

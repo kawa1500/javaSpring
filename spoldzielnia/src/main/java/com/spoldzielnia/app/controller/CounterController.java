@@ -67,14 +67,11 @@ public class CounterController {
 		return "counters";
 	}
 
-	private int getIdUser()
+	private User getIdUser()
 	{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String name = auth.getName(); //get logged in username
-	      System.out.println("ZALOGOWANYYYYYYYYYYYYYYYYYYYYYYYYYY: "+name);
-	      int id = userService.getUser(name).getIdUser();
-	      System.out.println("ID usera: "+id);
-	      return id;
+	      return userService.getUser(name);
 	}
 	
 }
