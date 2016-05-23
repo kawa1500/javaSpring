@@ -5,8 +5,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
+import com.spoldzielnia.app.service.FlatService;
 import com.spoldzielnia.app.service.UserService;
-import com.spoldzielnia.app.utils.mail.MailMail;
 import com.spoldzielnia.app.utils.mail.SendingMail;
 import com.spoldzielnia.app.validators.UserValidator;
+
+
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +32,9 @@ public class ManageUsersController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	FlatService flatService;
 	
 	UserValidator userValidator = new UserValidator();
 	
@@ -53,6 +56,7 @@ public class ManageUsersController {
 		}
 		
 		map.put("userRoleList",userService.listUserRole());
+		map.put("flatList", flatService.listFlat());
 		map.put("user", user);
 		
 
@@ -74,6 +78,7 @@ public class ManageUsersController {
 				{
 					result.rejectValue("login", "error.login.exist");
 					map.put("userRoleList",userService.listUserRole());
+					map.put("flatList", flatService.listFlat());
 					return "createUser";
 				}
 				else
@@ -106,6 +111,7 @@ public class ManageUsersController {
 		else
 		{
 			map.put("userRoleList",userService.listUserRole());
+			map.put("flatList", flatService.listFlat());
 			return "createUser";
 		}
 		

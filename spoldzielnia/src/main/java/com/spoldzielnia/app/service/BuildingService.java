@@ -12,3 +12,5 @@ public interface BuildingService {
 	public Building getBuilding(int id);
 	public void editBuilding(Building building);
 }
+
+
