@@ -26,8 +26,8 @@ public class Flat {
 	private String flatSurface;
 	private String tenantNumber;
 	
-	@OneToOne
-	private User user;
+//	@OneToOne
+//	private User user;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Building> building = new HashSet<Building>(0);
@@ -67,12 +67,12 @@ public class Flat {
 	public void setBuilding(Set<Building> building) {
 		this.building = building;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 	
 
 }

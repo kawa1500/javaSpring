@@ -38,8 +38,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Counters> userCounters;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Flat flat;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private Flat flat;
 	
 	public String getFirstName() {
 		return firstName;
@@ -119,11 +119,11 @@ public class User {
 	public void setUserCounters(List<Counters> userCounters) {
 		this.userCounters = userCounters;
 	}
-	public Flat getFlat() {
-		return flat;
-	}
-	public void setFlat(Flat flat) {
-		this.flat = flat;
-	}
+//	public Flat getFlat() {
+//		return flat;
+//	}
+//	public void setFlat(Flat flat) {
+//		this.flat = flat;
+//	}
 	
 }

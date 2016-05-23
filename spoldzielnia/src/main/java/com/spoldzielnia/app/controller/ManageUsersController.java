@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spoldzielnia.app.model.Building;
 import com.spoldzielnia.app.model.Flat;
-import com.spoldzielnia.app.model.FlatAndBuilding;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 import com.spoldzielnia.app.service.BuildingService;
@@ -60,20 +59,19 @@ public class ManageUsersController {
 		{
 			user=new User();
 		}
-		for(Flat f:flatService.listFlat())
-		{
-			
-			 for (Iterator<Building> it = f.getBuilding().iterator(); it.hasNext(); ) {
-			        Building b = it.next();
-			        System.out.println("found "+b.getBuildingCity());
-			    }
-			System.out.println("MIeszkanie + "+f.getBuilding().getClass());
-		}
+//		for(Flat f:flatService.listFlat())
+//		{
+//			
+//			 for (Iterator<Building> it = f.getBuilding().iterator(); it.hasNext(); ) {
+//			        Building b = it.next();
+//			        System.out.println("found "+b.getBuildingCity());
+//			    }
+//			System.out.println("MIeszkanie + "+f.getBuilding().getClass());
+//		}
 			
 			
 		map.put("userRoleList",userService.listUserRole());
-		map.put("flatList", flatService.listFlat());
-		map.put("fBList", new FlatAndBuilding(flatService.listFlat().get(0)));
+//		map.put("flatList", flatService.listFlat());
 		map.put("user", user);
 		
 

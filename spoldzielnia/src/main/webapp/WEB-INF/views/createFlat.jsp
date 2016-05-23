@@ -36,10 +36,13 @@
     <tr>
 	<td><form:label path="building"></form:label></td>
 		<td><form:select path="building" multiple="false">
-				<form:options items="${buildingList}" itemValue="idBuilding" itemLabel="buildingStreet"/>
+			<c:forEach var="building" items="${buildingList}" >
+        		<option value="${building.idBuilding}" label="${building.buildingCity} ${building.buildingStreet} ${building.buildingNumber}"/>
+    		</c:forEach>
 		</form:select></td>
 		<td><form:errors path="building"/></td>
 	</tr>
+	<tr>
      	<td>
 			<c:if test="${flat.idFlat<=0}">
             	<input type="submit" value="<spring:message code="flat.add"/>"/>
@@ -48,7 +51,7 @@
             	<input type="submit" value="<spring:message code="flat.edit"/>"/>
         	</c:if>
         </td>
-   
+   </tr>
 </table> 
 </form:form>
 </body>

@@ -59,13 +59,6 @@
 		</form:select></td>
 		<td><form:errors path="userRole"/></td>
 	</tr>
-	<tr>
-		<td><form:label path="flat"></form:label></td>
-		<td><form:select path="flat" multiple="false">
-				<form:options items="${flatList}" itemValue="idFlat" itemLabel="flatNumber"/>
-		</form:select></td>
-		<td><form:errors path="flat"/></td>
-	</tr>
     <tr>
         <td>
 			<c:if test="${user.idUser<=0}">
