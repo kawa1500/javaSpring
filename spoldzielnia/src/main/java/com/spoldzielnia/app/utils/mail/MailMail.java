@@ -1,21 +1,13 @@
 package com.spoldzielnia.app.utils.mail;
 
-import java.io.File;
-
 import javax.mail.MessagingException;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.MailParseException;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
-import com.spoldzielnia.app.model.Bills;
-
 
 public class MailMail
 {

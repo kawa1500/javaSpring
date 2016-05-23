@@ -2,19 +2,11 @@ package com.spoldzielnia.app.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spoldzielnia.app.model.PasswordUser;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.UserService;
-import com.spoldzielnia.app.utils.mail.MailMail;
 import com.spoldzielnia.app.utils.mail.SendingMail;
 import com.spoldzielnia.app.validators.PasswordUserValidator;
 

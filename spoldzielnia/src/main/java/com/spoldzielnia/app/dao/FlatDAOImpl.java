@@ -18,6 +18,7 @@ public class FlatDAOImpl implements FlatDAO{
 		sessionFactory.getCurrentSession().save(flat);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Flat> listFlat() {
 		String sql="from Flat order by id";

@@ -17,6 +17,7 @@ import com.spoldzielnia.app.model.Prices;
 
 public class PdfCreator {
 
+	@SuppressWarnings("deprecation")
 	public static String Generate(Bills bill, Prices price)
 	{
 		System.out.println("Generowanie !!!!!!!!!!!!!!!");

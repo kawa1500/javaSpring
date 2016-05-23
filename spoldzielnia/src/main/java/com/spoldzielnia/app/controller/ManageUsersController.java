@@ -1,6 +1,5 @@
 package com.spoldzielnia.app.controller;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spoldzielnia.app.model.Building;
-import com.spoldzielnia.app.model.Flat;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
-import com.spoldzielnia.app.service.BuildingService;
 import com.spoldzielnia.app.service.FlatService;
 import com.spoldzielnia.app.service.UserService;
 import com.spoldzielnia.app.utils.mail.SendingMail;
@@ -57,25 +53,12 @@ public class ManageUsersController {
 		else
 		{
 			user=new User();
-		}
-
-//		for(Flat f:flatService.listFlat())
-//		{
-//			
-//			 for (Iterator<Building> it = f.getBuilding().iterator(); it.hasNext(); ) {
-//			        Building b = it.next();
-//			        System.out.println("found "+b.getBuildingCity());
-//			    }
-//			System.out.println("MIeszkanie + "+f.getBuilding().getClass());
-//		}
-			
+		}			
 			
 		map.put("userRoleList",userService.listUserRole());
 		map.put("flatList", flatService.listFlat());
-
 		map.put("user", user);
 		
-
 		return "createUser";
 	}
 	
