@@ -19,6 +19,7 @@
     <tr>
         <td align="center">${bills.cost} </td>
         <td align="center">${bills.modDate} </td>
+        <td align="center">${bills.counters.user.flat.building.buildingCity} ${bills.counters.user.flat.building.buildingStreet} ${bills.counters.user.flat.building.buildingNumber} m.${bills.counters.user.flat.flatNumber}</td>
         <td align="center"><a href="/app/user/billsView?idBill=${bills.idBills}"><spring:message code="bills.details"/></a></td>
         <c:if test="${bills.status==2}">
             	<td align="center">Zapłacono</td>

@@ -34,12 +34,14 @@
         <td><form:errors path="tenantNumber"/></td>
     </tr>
     <tr>
-	<td><form:label path="building"></form:label></td>
-		<td><form:select path="building" multiple="false">
-			<c:forEach var="building" items="${buildingList}" >
-        		<option value="${building.idBuilding}" label="${building.buildingCity} ${building.buildingStreet} ${building.buildingNumber}"/>
-    		</c:forEach>
-		</form:select></td>
+		<td><form:label path="building"></form:label></td>
+		<td>
+			<form:select path="building" multiple="false">
+				<c:forEach var="building" items="${buildingList}" >
+        			<option value="${building.idBuilding}" label="${building.buildingCity} ${building.buildingStreet} ${building.buildingNumber}"/>
+    			</c:forEach>
+			</form:select>
+		</td>
 		<td><form:errors path="building"/></td>
 	</tr>
 	<tr>

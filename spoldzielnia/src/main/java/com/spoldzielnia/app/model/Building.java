@@ -1,8 +1,11 @@
 package com.spoldzielnia.app.model;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -17,6 +20,9 @@ public class Building {
 	private String buildingStreet;
 	private String buildingCity;
 	private String buildingPostCode;
+	
+	@OneToMany(mappedBy="building")
+	private List<Flat> flatList;
 	
 	public String getBuildingNumber() {
 		return buildingNumber;
@@ -48,6 +54,12 @@ public class Building {
 	}
 	public void setBuildingStreet(String buildingStreet) {
 		this.buildingStreet = buildingStreet;
+	}
+	public List<Flat> getFlatList() {
+		return flatList;
+	}
+	public void setFlatList(List<Flat> flatList) {
+		this.flatList = flatList;
 	}
 	
 }
