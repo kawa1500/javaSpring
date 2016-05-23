@@ -31,7 +31,7 @@ public class CronController {
 	BillsService billService;
 	
 	@SuppressWarnings("deprecation")
-	@Scheduled(cron="0 0 0 10 * ?")
+	@Scheduled(cron="0 32 17 23 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
