@@ -56,6 +56,7 @@ public class FlatController {
 	public String addFlat(@ModelAttribute("flat") Flat flat, Model model, BindingResult result) {
 		
 		flatValidator.validate(flat, result);
+		System.out.println("TWORZENIE FLAT: "+flat.getBuilding().getBuildingCity());
 		// je¿eli nie ma b³êdów to idzie dalej w ifie, a jak s¹ to zwraca createUser
 		if(result.getErrorCount()==0)
 		{

@@ -9,6 +9,6 @@ public interface BillsService {
 	public void add(Bills bill);
 	public void edit(Bills bill);
 	public List<Bills> listForUser(User user);
-	public List<Bills> listBills(int status);
+	public List<Bills> listBills();
 	public Bills get(int idBills);
 }

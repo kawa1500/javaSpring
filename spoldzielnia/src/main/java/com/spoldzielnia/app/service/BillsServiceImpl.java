@@ -46,9 +46,8 @@ public class BillsServiceImpl implements BillsService{
 	}
 
 	@Override
-	public List<Bills> listBills(int status) {
-		// TODO Auto-generated method stub
-		return billsDAO.listBills(status);
+	public List<Bills> listBills() {
+		return billsDAO.listBills();
 	}
 
 	@Override

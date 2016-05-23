@@ -18,9 +18,9 @@ public class BillsDAOImpl implements BillsDAO{
 	
 
 	@SuppressWarnings("unchecked")
-	public List<Bills> listBills(int status) {
-		String sql="from Bills where status=? order by modDate desc";
-		return sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, status).list();
+	public List<Bills> listBills() {
+		String sql="from Bills order by modDate desc";
+		return sessionFactory.getCurrentSession().createQuery(sql).list();
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class BillsDAOImpl implements BillsDAO{
 
 	@Override
 	public void edit(Bills bill) {
-		sessionFactory.getCurrentSession().save(bill);
+		sessionFactory.getCurrentSession().update(bill);
 	}
 
 	@Override

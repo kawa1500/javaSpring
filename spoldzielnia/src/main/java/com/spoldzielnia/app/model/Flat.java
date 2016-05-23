@@ -22,8 +22,8 @@ public class Flat {
 	private String flatSurface;
 	private String tenantNumber;
 	
-//	@OneToOne
-//	private User user;
+	@OneToOne(mappedBy="flat")
+	private User user;
 	
 	public int getIdFlat() {
 		return idFlat;
@@ -55,6 +55,13 @@ public class Flat {
 	}
 	public void setBuilding(Building building) {
 		this.building = building;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

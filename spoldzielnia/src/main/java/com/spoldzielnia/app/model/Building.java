@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,12 +18,6 @@ public class Building {
 	
 	@OneToMany(mappedBy = "building")
 	private List<Flat> flatList;
-	
-//	@OneToMany
-//	@JoinTable(name = "Tabeleczka",
-//	joinColumns = @JoinColumn(name = "idBuilding"),
-//	inverseJoinColumns = @JoinColumn(name = "idFlat"))
-//	private List<Flat> flatList;
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.AUTO)
@@ -69,6 +64,5 @@ public class Building {
 	public void setFlatList(List<Flat> flatList) {
 		this.flatList = flatList;
 	}
-
 
 }

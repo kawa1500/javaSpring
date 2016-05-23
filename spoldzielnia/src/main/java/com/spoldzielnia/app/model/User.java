@@ -38,8 +38,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Counters> userCounters;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Flat flat;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Flat flat;
 	
 	public String getFirstName() {
 		return firstName;
@@ -99,8 +99,6 @@ public class User {
 		@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_userrole", joinColumns = {@JoinColumn(name = "user_iduser", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "userrole_id", nullable = false, updatable = false) })
-	
-
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
@@ -119,11 +117,11 @@ public class User {
 	public void setUserCounters(List<Counters> userCounters) {
 		this.userCounters = userCounters;
 	}
-//	public Flat getFlat() {
-//		return flat;
-//	}
-//	public void setFlat(Flat flat) {
-//		this.flat = flat;
-//	}
+	public Flat getFlat() {
+		return flat;
+	}
+	public void setFlat(Flat flat) {
+		this.flat = flat;
+	}
 	
 }
