@@ -54,4 +54,9 @@ public class CounterDAOImpl implements CounterDAO{
 		return (Counters)sessionFactory.getCurrentSession().get(Counters.class, idCounter);
 	}
 
+	@Override
+	public void delete(Counters counter) {
+		sessionFactory.getCurrentSession().delete(counter);
+	}
+
 }

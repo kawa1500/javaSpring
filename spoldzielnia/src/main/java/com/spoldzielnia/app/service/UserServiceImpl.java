@@ -7,7 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spoldzielnia.app.dao.BillsDAO;
+import com.spoldzielnia.app.dao.CounterDAO;
 import com.spoldzielnia.app.dao.UserDAO;
+import com.spoldzielnia.app.model.Counters;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 
@@ -17,6 +20,12 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	CounterDAO counterDAO;
+	
+	@Autowired
+	BillsDAO billsDAO;
 	
 	@Transactional
 	public void addUser(User user) {
@@ -32,6 +41,11 @@ public class UserServiceImpl implements UserService{
 
 	@Transactional
 	public void removeUser(int id) {
+		for(Counters c:counterDAO.listMyCounter(getUser(id)))
+		{
+			billsDAO.delete(billsDAO.listForUser(c));
+			counterDAO.delete(c);
+		}
 		userDAO.removeUser(id);
 	}
 
