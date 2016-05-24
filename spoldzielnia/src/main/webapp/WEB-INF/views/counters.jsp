@@ -11,7 +11,7 @@
 </head>
 <body>
 <form:form method="post" action="" commandName="counter">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="idCounter"/>
     </tr>
@@ -38,7 +38,7 @@
     <tr>
         <td>
         	<c:if test="${update==true}">
-            	<input type="submit" value="<spring:message code="price.submit"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="price.submit"/>"/>
         	</c:if>
         </td>
     </tr>

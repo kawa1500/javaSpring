@@ -10,22 +10,22 @@
 <link href="<c:url value="/resources/css/admin.css" />" rel="stylesheet">
 </head>
 <body>
-<table style="width: 100%">
+<table class="tabelka">
 <tr>
     <th><spring:message code="bills.cost"/></th>
     <th><spring:message code="price.date"/></th>
 </tr>
 <c:forEach items="${billsList}" var="bills">
     <tr>
-        <td align="center">${bills.cost} </td>
-        <td align="center">${bills.modDate} </td>
-        <td align="center">${bills.counters.user.flat.building.buildingCity} ${bills.counters.user.flat.building.buildingStreet} ${bills.counters.user.flat.building.buildingNumber} m.${bills.counters.user.flat.flatNumber}</td>
-        <td align="center"><a href="/app/user/billsView?idBill=${bills.idBills}"><spring:message code="bills.details"/></a></td>
+        <td>${bills.cost} </td>
+        <td>${bills.modDate} </td>
+        <td>${bills.counters.user.flat.building.buildingCity} ${bills.counters.user.flat.building.buildingStreet} ${bills.counters.user.flat.building.buildingNumber} m.${bills.counters.user.flat.flatNumber}</td>
+        <td><a href="/app/user/billsView?idBill=${bills.idBills}"><spring:message code="bills.details"/></a></td>
         <c:if test="${bills.status==2}">
-            	<td align="center">Zapłacono</td>
+            	<td>Zapłacono</td>
         </c:if>
         <c:if test="${bills.status==1}">
-            	<td align="center">Nie Zapłacono</td>
+            	<td>Nie Zapłacono</td>
         </c:if>
     </tr>
 </c:forEach>

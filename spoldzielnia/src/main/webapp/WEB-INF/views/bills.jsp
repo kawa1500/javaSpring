@@ -19,9 +19,9 @@
     <tr>
         <td align="center">${bills.cost} </td>
         <td align="center">${bills.modDate} </td>
-        <td align="center"><a href="/app/user/billsView?idBill=${bills.idBills}"><spring:message code="bills.details"/></a></td>
+        <td align="center"><a class="myButton" href="/app/user/billsView?idBill=${bills.idBills}"><spring:message code="bills.details"/></a></td>
         <c:if test="${bills.status==1}">
-            	<td align="center"><a href="/app/user/pay?idBill=${bills.idBills}"><spring:message code="bills.pay"/></a></td>
+            	<td align="center"><a class="myButton" href="/app/user/pay?idBill=${bills.idBills}"><spring:message code="bills.pay"/></a></td>
         </c:if>
     </tr>
 </c:forEach>

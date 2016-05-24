@@ -11,7 +11,7 @@
 </head>
 <body>
 <form:form method="post" action="" commandName="userRole">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="id"/>
     </tr>
@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <td>
-            <input type="submit" value="<spring:message code="user.addRole"/>"/>
+            <input class="myButton" type="submit" value="<spring:message code="user.addRole"/>"/>
         </td>
     </tr>
 </table> 

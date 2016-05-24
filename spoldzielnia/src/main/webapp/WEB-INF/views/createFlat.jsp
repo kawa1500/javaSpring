@@ -12,7 +12,7 @@
 <body>
 <!-- commandName nazwa obiektu ktory znajduje sie w tym forumalrzu -->
 <form:form method="post" action="" commandName="flat">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="idFlat"/>
     </tr>
@@ -47,10 +47,10 @@
 	<tr>
      	<td>
 			<c:if test="${flat.idFlat<=0}">
-            	<input type="submit" value="<spring:message code="flat.add"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="flat.add"/>"/>
         	</c:if>
         	<c:if test="${flat.idFlat>0}">
-            	<input type="submit" value="<spring:message code="flat.edit"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="flat.edit"/>"/>
         	</c:if>
         </td>
    </tr>

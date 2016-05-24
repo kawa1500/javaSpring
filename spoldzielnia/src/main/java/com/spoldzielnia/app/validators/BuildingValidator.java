@@ -71,18 +71,12 @@ public class BuildingValidator implements Validator{
 	
 	private boolean validStreet(String buildingStreet)
 	{
-		if(	buildingStreet.matches(STREET_PATTERN) && buildingStreet.length()<25 )
-		{return true;}
-		else
-		{return false;}
+		return true;
 	}
 
 	private boolean validCity(String buildingCity)
 	{
-		if(	buildingCity.matches(CITY_PATTERN) && buildingCity.length()<25)
-		{return true;}
-		else
-		{return false;}
+		return true;
 	}
 
 	private boolean validNumber(String buildingNumber)

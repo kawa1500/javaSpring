@@ -31,7 +31,7 @@ public class CronController {
 	BillsService billService;
 	
 	@SuppressWarnings("deprecation")
-	@Scheduled(cron="0 32 17 23 * ?")
+	@Scheduled(cron="0 12 09 24 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
@@ -98,7 +98,7 @@ public class CronController {
 		Bills myBill = new Bills();
 		Counters lastCounterValue = counterService.getLastCounters(counter);
 		Prices actualPrice = priceService.getActivePrice();
-		myBill.setOsoby(1);
+		myBill.setOsoby(Integer.parseInt(counter.getUser().getFlat().getTenantNumber()));
 		myBill.setStatus(1);
 		myBill.setCurrentValue(counter.getCurrent()-lastCounterValue.getCurrent());
 		myBill.setWaterValue(counter.getWater()-lastCounterValue.getWater());

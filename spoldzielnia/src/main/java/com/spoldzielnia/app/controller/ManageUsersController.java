@@ -94,6 +94,7 @@ public class ManageUsersController {
 				User userEdit = userService.getUser(user.getIdUser());
 				System.out.println("ILOSC Rólaaaaaaaaaaaa: "+userEdit.getUserRole().size());
 				if(user.getUserRole()==null)user.setUserRole(userEdit.getUserRole());
+				if(user.getFlat()==null)user.setFlat(userEdit.getFlat());
 				if(user.getPassword().isEmpty())
 				{
 					user.setPassword(userEdit.getPassword());
