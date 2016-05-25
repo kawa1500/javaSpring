@@ -351,3 +351,22 @@ body {
 	top:1px;
 }
 
+
+.payButton {
+	background-color:#44c767;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	text-align: center;
+}
+
+.noPayButton {
+	background-color:#fc0505;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	text-align: center;
+}
+
+
+

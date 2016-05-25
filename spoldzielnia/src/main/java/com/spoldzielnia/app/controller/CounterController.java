@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,10 +47,37 @@ public class CounterController {
 	}
 	
 	@RequestMapping(value = "/user/counters", method = RequestMethod.POST)
-	public String addCounters(@ModelAttribute("counter") Counters counter ) {
+	public String addCounters(Map<String,Object> map, @ModelAttribute("counter") Counters counter, BindingResult result ) {
 		counter.setUser(getIdUser());
-		counterService.addCounter(counter);
-		return "redirect:counters";
+		boolean isOK=true;
+		if(counter.getCurrent()<counterService.getActiveCounter(getIdUser()).getCurrent())
+		{
+			result.rejectValue("current", "error.counters.small");
+			isOK=false;
+		}
+		if(counter.getGas()<counterService.getActiveCounter(getIdUser()).getGas())
+		{
+			result.rejectValue("gas", "error.counters.small");
+			isOK=false;
+		}
+		if(counter.getWater()<counterService.getActiveCounter(getIdUser()).getWater())
+		{
+			result.rejectValue("water", "error.counters.small");
+			isOK=false;
+		}
+		
+		if(isOK)
+		{
+			counterService.addCounter(counter);	
+			return "redirect:counters";
+		}
+		else
+		{
+			map.put("counterList",counterService.listMyCounter(getIdUser()));
+			map.put("update",true);
+			return	"counters";
+		}
+		
 	}
 
 	private User getIdUser()
