@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.spoldzielnia.app.dao.FlatDAO;
+import com.spoldzielnia.app.dao.UserDAO;
 import com.spoldzielnia.app.model.Flat;
+import com.spoldzielnia.app.model.User;
 
 @Service
 public class FlatServiceImpl implements FlatService{
 
 	@Autowired
 	FlatDAO flatDAO;
+	
+	@Autowired
+	UserDAO userDAO;
 	
 	@Autowired 
 	UserService userService;
@@ -42,4 +47,5 @@ public class FlatServiceImpl implements FlatService{
 	public void editFlat(Flat flat) {
 		flatDAO.editFlat(flat);
 	}
+
 }

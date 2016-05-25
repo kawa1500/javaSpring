@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spoldzielnia.app.model.Building;
 import com.spoldzielnia.app.model.Flat;
 import com.spoldzielnia.app.service.BuildingService;
 import com.spoldzielnia.app.service.FlatService;
 import com.spoldzielnia.app.validators.FlatValidator;
-
 
 @Controller
 @SessionAttributes
@@ -52,22 +52,47 @@ public class FlatController {
 	
 	
 	@RequestMapping(value = "/createFlat", method = RequestMethod.POST)
-	public String addFlat(@ModelAttribute("flat") Flat flat, Model model, BindingResult result) {
+	public String addFlat(@ModelAttribute("flat") Flat flat, Model model, BindingResult result, Map<String,Object> map) {
 		
 		flatValidator.validate(flat, result);
 		System.out.println("TWORZENIE FLAT: "+flat.getBuilding().getBuildingCity());
 		// je¿eli nie ma b³êdów to idzie dalej w ifie, a jak s¹ to zwraca createUser
 		if(result.getErrorCount()==0)
 		{
-			if (flat.getIdFlat()==0)
+			boolean isOK = true;
+			for(Flat f : flatService.listFlat())
 			{
-				flatService.addFlat(flat);
+				System.out.println("SPRAWDZAM BUILDING");
+				if(f.getBuilding().getIdBuilding()==flat.getBuilding().getIdBuilding() &&
+						f.getFlatNumber().contentEquals(flat.getFlatNumber()) &&
+						f.getFlatSurface().contentEquals(flat.getFlatSurface()) &&
+						f.getTenantNumber().contentEquals(flat.getTenantNumber()))
+				{
+					isOK=false;//flatNumber,flatSurface,tenantNumber
+					result.rejectValue("flatNumber", "error.flat.exist");
+					result.rejectValue("flatSurface", "error.flat.exist");
+					result.rejectValue("tenantNumber", "error.flat.exist");
+					break;
+				}
+			}
+			if(isOK)
+			{
+				if (flat.getIdFlat()==0)
+				{
+					flatService.addFlat(flat);
+				}
+				else
+				{
+					flatService.editFlat(flat);
+				}
+				return "redirect:manageFlat";
 			}
 			else
 			{
-				flatService.editFlat(flat);
+				map.put("buildingList", buildingService.listBuilding());
+				return "createFlat";
 			}
-			return "redirect:manageFlat";
+			
 		}
 		else
 		{
