@@ -31,7 +31,7 @@ public class CounterDAOImpl implements CounterDAO{
 	public Counters getActiveCounter(User user) {
 		List<Counters> counters = new ArrayList<Counters>();
 		  counters = sessionFactory.getCurrentSession()
-			.createQuery("from Counters where status>0 and user_iduser=? order by modDate desc")
+			.createQuery("from Counters where user_iduser=? order by modDate desc")
 			.setParameter(0, user.getIdUser())
 			.list();
 

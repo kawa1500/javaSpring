@@ -20,10 +20,6 @@ public class CounterServiceImpl implements CounterService {
 	
 	@Override
 	public void addCounter(Counters counter) {
-		Counters last = getActiveCounter(counter.getUser());
-		last.setStatus(0);
-		if(last!=null && last.getIdCounter()>0)counterDAO.editCounter(last);
-		counter.setStatus(1);
 		counter.setModDate(new Date());
 		counterDAO.addCounter(counter);
 	}
@@ -36,14 +32,6 @@ public class CounterServiceImpl implements CounterService {
 	@Override
 	public Counters getActiveCounter(User user) {
 		Counters active=counterDAO.getActiveCounter(user);
-		if(active.getIdCounter()<=0)
-		{
-			List<Counters> countersy = listMyCounter(user);
-			if(countersy.size()>0)
-			{
-				active = countersy.get(0);
-			}
-		}
 		return active;
 	}
 

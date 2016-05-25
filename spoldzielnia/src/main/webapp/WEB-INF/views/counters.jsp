@@ -31,11 +31,6 @@
         <td><form:errors path="current"/></td>
     </tr>
     <tr>
-        <td><form:label path="energy"><spring:message code="price.energy"/> kJ</form:label></td>
-        <td><form:input path="energy" /></td>
-        <td><form:errors path="energy"/></td>
-    </tr>
-    <tr>
         <td>
         	<c:if test="${update==true}">
             	<input class="myButton" type="submit" value="<spring:message code="price.submit"/>"/>

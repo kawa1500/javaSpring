@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spoldzielnia.app.model.Counters;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.CounterService;
-import com.spoldzielnia.app.service.PriceService;
 import com.spoldzielnia.app.service.UserService;
 
 /**
@@ -30,9 +30,6 @@ public class CounterController {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	PriceService priceService;
-	
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/user/counters", method = RequestMethod.GET)
 	public String viewCounters(Map<String,Object> map,HttpServletRequest request ) {
@@ -40,16 +37,19 @@ public class CounterController {
 		map.put("counterList",counterService.listMyCounter(getIdUser()));
 		map.put("counter", counterService.getActiveCounter(getIdUser()));
 		boolean visibleButton = true;
-		if(new Date().getDate()>10)visibleButton=false;
-		for(Counters counter:counterService.listMyCounter(getIdUser()))
-		{
-			if(counter.getModDate().getMonth()==new Date().getMonth()
-				&& counter.getModDate().getYear()==new Date().getYear()) visibleButton=false;
-		}
-		
+		if((counterService.getActiveCounter(getIdUser()).getStatus()==0 &&
+				counterService.getActiveCounter(getIdUser()).getIdCounter()>0)||(new Date().getDate()>10))visibleButton=false;//
+
 		map.put("update",visibleButton);
 		
 		return "counters";
+	}
+	
+	@RequestMapping(value = "/user/counters", method = RequestMethod.POST)
+	public String addCounters(@ModelAttribute("counter") Counters counter ) {
+		counter.setUser(getIdUser());
+		counterService.addCounter(counter);
+		return "redirect:counters";
 	}
 
 	private User getIdUser()

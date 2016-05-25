@@ -85,8 +85,8 @@ public class ManageUsersController {
 				}
 				else
 				{
-//					SendingMail mailSend = new SendingMail(language);
-//					mailSend.createUser(user);
+					SendingMail mailSend = new SendingMail(language);
+					mailSend.createUser(user);
 					System.out.println("JEEEEEEEZYK: "+language);
 					userService.addUser(user);
 					return "redirect:manageUsers";
