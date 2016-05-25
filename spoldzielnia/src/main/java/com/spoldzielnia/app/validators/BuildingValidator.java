@@ -1,9 +1,11 @@
 package com.spoldzielnia.app.validators;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.spoldzielnia.app.dao.BuildingDAO;
 import com.spoldzielnia.app.model.Building;
 ;
 
@@ -13,7 +15,6 @@ public class BuildingValidator implements Validator{
 	private static final String STREET_PATTERN = "[A-Z]{1}+|[a-zA-Z]+";
 	private static final String CITY_PATTERN = "[a-zA-Z]+|[a-zA-Z]+";
 	private static final String NUMBER_PATTERN = "[0-9a-dA-D]+|[0-9a-dA-D]+";
-
 	
 	@Override
 	public boolean supports(Class clazz) {
@@ -54,9 +55,8 @@ public class BuildingValidator implements Validator{
 			{
 				errors.rejectValue("buildingNumber", "error.buildingNumber.invalid");
 			}
-
-	
-	
+			
+			
 			
 		}
 	}
@@ -71,18 +71,12 @@ public class BuildingValidator implements Validator{
 	
 	private boolean validStreet(String buildingStreet)
 	{
-		if(	buildingStreet.matches(STREET_PATTERN) && buildingStreet.length()<25 )
-		{return true;}
-		else
-		{return false;}
+		return true;
 	}
 
 	private boolean validCity(String buildingCity)
 	{
-		if(	buildingCity.matches(CITY_PATTERN) && buildingCity.length()<25)
-		{return true;}
-		else
-		{return false;}
+		return true;
 	}
 
 	private boolean validNumber(String buildingNumber)

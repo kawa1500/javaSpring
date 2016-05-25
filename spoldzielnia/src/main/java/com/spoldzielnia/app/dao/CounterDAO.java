@@ -11,4 +11,5 @@ public interface CounterDAO {
 	public Counters getActiveCounter(User user);
 	public void editCounter(Counters user);
 	public Counters get(int idCounter);
+	public void delete(Counters counter);
 }

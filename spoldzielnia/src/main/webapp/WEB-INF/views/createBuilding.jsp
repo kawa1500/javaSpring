@@ -12,7 +12,7 @@
 <body>
 <!-- commandName nazwa obiektu ktory znajduje sie w tym forumalrzu -->
 <form:form method="post" action="" commandName="building">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="idBuilding"/>
     </tr>
@@ -40,10 +40,10 @@
     </tr>
      	<td>
 			<c:if test="${building.idBuilding<=0}">
-            	<input type="submit" value="<spring:message code="building.add"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="building.add"/>"/>
         	</c:if>
         	<c:if test="${building.idBuilding>0}">
-            	<input type="submit" value="<spring:message code="building.edit"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="building.edit"/>"/>
         	</c:if>
         </td>
    

@@ -9,6 +9,7 @@ public interface UserService {
 	public void addUser(User user);
 	public List<User> listUser();
 	public void removeUser(int id);
+	public void removeUserByFlat(int idFlat);
 	public User getUser(int id);
 	public User getUser(String login);
 	public void editUser(User user);

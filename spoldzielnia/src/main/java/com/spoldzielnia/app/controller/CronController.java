@@ -30,75 +30,55 @@ public class CronController {
 	@Autowired
 	BillsService billService;
 	
-	@SuppressWarnings("deprecation")
-	@Scheduled(cron="0 38 17 23 * ?")
+	@Scheduled(cron="0 0 0 11 * ?")
     public void demoServiceMethod()
     {
 		for(User user: userService.listUser())
 		{
 			System.out.println("wyszukiwanie licznika dla usera: "+user.getIdUser());
 			Counters count = counterService.getActiveCounter(user);
-			if(count.getIdCounter()>0)
+			if(count.getStatus()==0 && count.getIdCounter()>0)
 			{
-				if(count.getModDate().getMonth()!=new Date().getMonth())
-				{
-					ryczaltuj(user, count.getIdCounter());
-				}
+				//uzytkownik doda³ stan
+				System.out.println("UZYTKOWNIK DODA£ WARTOŒC LICZNIKA");
+				Prices actualPrices= priceService.getActivePrice();
+				count.setEnergy(counterService.getLastCounters(count).getEnergy()+actualPrices.getrEnergy());
+				count.setStatus(1);
+				counterService.editCounter(count);
 			}
 			else
 			{
-				ryczaltuj(user, count.getIdCounter());
+				//ryczalt pierwszy
+				System.out.println("TRZEBA ZROBIÆ RYCZA£T");
+				ryczaltuj(count);
 			}
 			
-			Counters countF = counterService.getActiveCounter(user);
-			if(countF.getIdCounter()>0)
-			{
-				if(countF.getModDate().getMonth()==new Date().getMonth() && countF.getStatus()==1)
-				{
-					countF.setStatus(2);
-					counterService.editCounter(countF);
-					generateBill(countF);
-				}
-			}
-			
-			System.out.println("Wyszukiwanie dla usera "+user.getIdUser()+" znaleziono licznik z idFlat "+user.getIdUser());
+			generateBill(user);
 		}
     }
 	
-	private void ryczaltuj(User user, int idCounter)
+	private void ryczaltuj(Counters lastCounter)
 	{
 		Prices actualPrices= priceService.getActivePrice();
-		System.out.println("Dane wejœciowe: "+user.getIdUser()+"|"+idCounter);
-		if(idCounter<1){
-			Counters lastCounter = new Counters();
-			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
-			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
-			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
-			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
-			lastCounter.setRyczalt(true);
-			lastCounter.setUser(user);
-			counterService.addCounter(lastCounter);
-			System.out.println("TWORZENIE LICZNIKÓW");
-		}
-		else
-		{
-			Counters lastCounter = counterService.getActiveCounter(user);
-			lastCounter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
-			lastCounter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
-			lastCounter.setGas(lastCounter.getGas()+actualPrices.getrGas());
-			lastCounter.setWater(lastCounter.getWater()+actualPrices.getrWater());
-			lastCounter.setRyczalt(true);
-			counterService.addCounter(lastCounter);
-			System.out.println("UPDATE LICZNIKÓW");
-		}
+		Counters counter = new Counters();
+		counter.setUser(lastCounter.getUser());
+		counter.setStatus(1);
+		counter.setRyczalt(true);
+		counter.setCurrent(lastCounter.getCurrent()+actualPrices.getrCurrent());
+		counter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
+		counter.setGas(lastCounter.getGas()+actualPrices.getrGas());
+		counter.setWater(lastCounter.getWater()+actualPrices.getrWater());
+		
+		counterService.addCounter(counter);
 	}
 	
-	private void generateBill(Counters counter)
+	private void generateBill(User user)
 	{
 		Bills myBill = new Bills();
+		Counters counter = counterService.getActiveCounter(user);
 		Counters lastCounterValue = counterService.getLastCounters(counter);
 		Prices actualPrice = priceService.getActivePrice();
-		myBill.setOsoby(1);
+		myBill.setOsoby(Integer.parseInt(counter.getUser().getFlat().getTenantNumber()));
 		myBill.setStatus(1);
 		myBill.setCurrentValue(counter.getCurrent()-lastCounterValue.getCurrent());
 		myBill.setWaterValue(counter.getWater()-lastCounterValue.getWater());

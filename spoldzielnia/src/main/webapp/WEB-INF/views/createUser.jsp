@@ -12,7 +12,7 @@
 <body>
 
 <form:form method="post" action="" commandName="user">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="idUser"/>
     </tr>
@@ -37,12 +37,12 @@
         <td><form:errors path="login"/></td>
     </tr>
     <tr>
-        <td><form:label path="password" ><spring:message code="user.password"/></form:label></td>
+        <td><form:label path="password"><spring:message code="user.password"/></form:label></td>
         <td><form:input type="password" path="password" /></td>
         <td><form:errors path="password"/></td>
     </tr>
     <tr>
-        <td><form:label path="PESEL">PESEL</form:label></td>
+        <td><form:label path="PESEL" >PESEL</form:label></td>
         <td><form:input path="PESEL" /></td>
         <td><form:errors path="PESEL"/></td>
     </tr>
@@ -52,14 +52,14 @@
         <td><form:errors path="phone"/></td>
     </tr>
     <tr>
-		<td><form:label path="userRole"></form:label></td>
+		<td><form:label path="userRole"><spring:message code="user.role"/></form:label></td>
 		<td><form:select path="userRole" multiple="true">
 				<form:options items="${userRoleList}" itemValue="id" itemLabel="role"/>
 		</form:select></td>
 		<td><form:errors path="userRole"/></td>
 	</tr>
 	<tr>
-		<td><form:label path="flat"></form:label></td>
+		<td><form:label path="flat"><spring:message code="user.flat"/></form:label></td>
 		<td><form:select path="flat" multiple="false">
 			<c:forEach var="flat" items="${flatList}" >
         			<option value="${flat.idFlat}" label="${flat.building.buildingCity} ${flat.building.buildingStreet} ${flat.building.buildingNumber} ${flat.flatNumber}"/>
@@ -70,10 +70,10 @@
     <tr>
         <td>
 			<c:if test="${user.idUser<=0}">
-            	<input type="submit" value="<spring:message code="user.add"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="user.add"/>"/>
         	</c:if>
         	<c:if test="${user.idUser>0}">
-            	<input type="submit" value="<spring:message code="user.edit"/>"/>
+            	<input class="myButton" type="submit" value="<spring:message code="user.edit"/>"/>
         	</c:if>
         </td>
     </tr>

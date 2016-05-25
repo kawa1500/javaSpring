@@ -43,6 +43,11 @@ public class BillsDAOImpl implements BillsDAO{
 		String sql="from Bills where counters_idcounter=?";
 		return (Bills)sessionFactory.getCurrentSession().createQuery(sql).setParameter(0, counter.getIdCounter()).list().get(0);
 	}
+
+	@Override
+	public void delete(Bills bill) {
+		sessionFactory.getCurrentSession().delete(bill);
+	}
 	
 	
 }

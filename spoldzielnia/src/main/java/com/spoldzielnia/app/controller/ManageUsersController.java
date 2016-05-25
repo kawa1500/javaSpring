@@ -1,5 +1,7 @@
 package com.spoldzielnia.app.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spoldzielnia.app.model.Flat;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 import com.spoldzielnia.app.service.FlatService;
@@ -56,7 +59,7 @@ public class ManageUsersController {
 		}			
 			
 		map.put("userRoleList",userService.listUserRole());
-		map.put("flatList", flatService.listFlat());
+		map.put("flatList", getFlatforUSer());
 		map.put("user", user);
 		
 		return "createUser";
@@ -77,7 +80,7 @@ public class ManageUsersController {
 				{
 					result.rejectValue("login", "error.login.exist");
 					map.put("userRoleList",userService.listUserRole());
-					map.put("flatList", flatService.listFlat());
+					map.put("flatList", getFlatforUSer());
 					return "createUser";
 				}
 				else
@@ -94,6 +97,7 @@ public class ManageUsersController {
 				User userEdit = userService.getUser(user.getIdUser());
 				System.out.println("ILOSC Rólaaaaaaaaaaaa: "+userEdit.getUserRole().size());
 				if(user.getUserRole()==null)user.setUserRole(userEdit.getUserRole());
+				if(user.getFlat()==null)user.setFlat(userEdit.getFlat());
 				if(user.getPassword().isEmpty())
 				{
 					user.setPassword(userEdit.getPassword());
@@ -142,5 +146,20 @@ public class ManageUsersController {
 	{
 		userService.addUserRole(userRole);
 		return "redirect:manageUsers";
+	}
+	
+	private List<Flat> getFlatforUSer()
+	{
+		List<Flat> myList = new ArrayList<Flat>();
+		for(Flat f : flatService.listFlat())
+		{
+			boolean weCanAdd = true;
+			for(User u : userService.listUser())
+			{
+				if(u.getFlat().getIdFlat()==f.getIdFlat())  weCanAdd=false;
+			}
+			if(weCanAdd)myList.add(f);
+		}
+		return myList;
 	}
 }

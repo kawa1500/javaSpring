@@ -22,6 +22,7 @@ public class BuildingController {
 	@Autowired
 	BuildingService buildingService;
 	BuildingValidator buildingValidator = new BuildingValidator();
+	
 	@RequestMapping(value = "/createBuilding", method = RequestMethod.GET)
 	public String viewCreateBuilding(Map<String,Object> map,HttpServletRequest request ) {
 		int buildingID = ServletRequestUtils.getIntParameter(request, "idBuilding", -1);
@@ -48,15 +49,42 @@ public class BuildingController {
 		// je¿eli nie ma b³êdów to idzie dalej w ifie, a jak s¹ to zwraca createUser
 		if(result.getErrorCount()==0)
 		{
-			if (building.getIdBuilding()==0)
+			boolean isOK = true;
+			for(Building b : buildingService.listBuilding())
 			{
-				buildingService.addBuilding(building);
+				System.out.println("SPRAWDZAM BUILDING");
+				if(b.getBuildingCity().contentEquals(building.getBuildingCity()) &&
+						b.getBuildingNumber().contentEquals(building.getBuildingNumber()) &&
+						b.getBuildingPostCode().contentEquals(building.getBuildingPostCode()) &&
+						b.getBuildingStreet().contentEquals(building.getBuildingStreet()))
+				{
+					isOK=false;
+					result.rejectValue("buildingStreet", "error.building.exist");
+					result.rejectValue("buildingPostCode", "error.building.exist");
+					result.rejectValue("buildingCity", "error.building.exist");
+					result.rejectValue("buildingNumber", "error.building.exist");
+					break;
+				}
+			}
+			
+			if(isOK)
+			{
+				if (building.getIdBuilding()==0)
+				{
+					buildingService.addBuilding(building);
+				}
+				else
+				{
+					buildingService.editBuilding(building);
+				}
+				return "redirect:manageBuilding";
 			}
 			else
 			{
-				buildingService.editBuilding(building);
+				return "createBuilding";
 			}
-			return "redirect:manageBuilding";
+			
+			
 		}
 		else
 		{

@@ -38,7 +38,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Counters> userCounters;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Flat flat;
 	
 	public String getFirstName() {

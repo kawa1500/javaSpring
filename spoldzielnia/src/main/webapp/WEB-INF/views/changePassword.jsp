@@ -11,7 +11,7 @@
 </head>
 <body>
 <form:form method="post" action="" commandName="user">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="oldPasswordHash"/>
     </tr>
@@ -32,7 +32,7 @@
     </tr>
     <tr>
         <td>
-			<input type="submit" value="<spring:message code="user.change"/>"/>
+			<input class="myButton" type="submit" value="<spring:message code="user.change"/>"/>
         </td>
     </tr>
 </table> 

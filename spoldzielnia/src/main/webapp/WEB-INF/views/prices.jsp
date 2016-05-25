@@ -11,7 +11,7 @@
 </head>
 <body>
 <form:form method="post" action="" commandName="price">
-    <table>
+    <table class="tabelka">
     <tr>
         <td><form:hidden path="idPrices"/>
     </tr>
@@ -77,7 +77,7 @@
 	</tr>
     <tr>
         <td>
-            <input type="submit" value="<spring:message code="price.submit"/>"/>
+            <input class="myButton" type="submit" value="<spring:message code="price.submit"/>"/>
         </td>
     </tr>
 </table> 
