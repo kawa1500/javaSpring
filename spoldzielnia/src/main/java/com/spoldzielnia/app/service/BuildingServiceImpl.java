@@ -7,13 +7,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spoldzielnia.app.dao.BuildingDAO;
+import com.spoldzielnia.app.dao.FlatDAO;
 import com.spoldzielnia.app.model.Building;
+import com.spoldzielnia.app.model.Flat;
 
 @Service
 public class BuildingServiceImpl implements BuildingService{
 
 	@Autowired
 	BuildingDAO buildingDAO;
+	
+	@Autowired
+	FlatDAO flatDAO;
+	
+	@Autowired 
+	FlatService flatService;
 	
 	@Transactional
 	public void addBuilding(Building building) {
@@ -27,6 +35,10 @@ public class BuildingServiceImpl implements BuildingService{
 
 	@Transactional
 	public void removeBuilding(int id) {
+		for(Flat f : flatDAO.listFlat())
+		{
+			if(f.getBuilding().getIdBuilding()==id) flatService.removeFlat(f); 
+		}
 		buildingDAO.removeBuilding(id);
 	}
 

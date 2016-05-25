@@ -11,6 +11,7 @@ import com.spoldzielnia.app.dao.BillsDAO;
 import com.spoldzielnia.app.dao.CounterDAO;
 import com.spoldzielnia.app.dao.UserDAO;
 import com.spoldzielnia.app.model.Counters;
+import com.spoldzielnia.app.model.Flat;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 
@@ -96,6 +97,17 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getUser(String login) {
 		return userDAO.findByLogin(login);
+	}
+
+	@Override
+	public void removeUserByFlat(int idFlat) {
+		for(User us : listUser())
+		{
+			if(us.getFlat().getIdFlat()==idFlat)
+			{
+				removeUser(us.getIdUser());
+			}
+		}
 	}
 
 

@@ -88,7 +88,7 @@ public class FlatController {
 	@RequestMapping(value = "/deleteFlat", method = RequestMethod.GET)
 	public String DeleteFlat(HttpServletRequest request) {
 		int flatID = ServletRequestUtils.getIntParameter(request, "idFlat", -1);
-		flatService.removeFlat(flatID);
+		flatService.removeFlat(flatService.getFlat(flatID));
 		return "redirect:manageFlat";
 	}
 }

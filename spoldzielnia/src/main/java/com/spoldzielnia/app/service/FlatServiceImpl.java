@@ -14,6 +14,9 @@ public class FlatServiceImpl implements FlatService{
 	@Autowired
 	FlatDAO flatDAO;
 	
+	@Autowired 
+	UserService userService;
+	
 	@Transactional
 	public void addFlat(Flat flat) {
 		flatDAO.addFlat(flat);
@@ -25,8 +28,9 @@ public class FlatServiceImpl implements FlatService{
 	}
 
 	@Transactional
-	public void removeFlat(int id) {
-		flatDAO.removeFlat(id);
+	public void removeFlat(Flat flat) {
+		userService.removeUserByFlat(flat.getIdFlat());
+		flatDAO.removeFlat(flat);
 	}
 
 	@Transactional

@@ -26,12 +26,8 @@ public class FlatDAOImpl implements FlatDAO{
 	}
 
 	@Override
-	public void removeFlat(int id) {
-		Flat flat= getFlat(id);
-		if(flat.getIdFlat()!=0)
-		{
-			sessionFactory.getCurrentSession().delete(flat);
-		}
+	public void removeFlat(Flat flat) {
+		sessionFactory.getCurrentSession().delete(flat);
 	}
 
 	@Override
