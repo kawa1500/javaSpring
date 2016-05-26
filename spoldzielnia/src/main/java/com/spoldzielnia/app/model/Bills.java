@@ -22,10 +22,12 @@ public class Bills {
 	private int idBills;
 	
 	private double water;
+	private double hotWater;
 	private double gas;
 	private double current;
 	private double energy;
 	private double waterValue;
+	private double hotWaterValue;
 	private double gasValue;
 	private double currentValue;
 	private double energyValue;
@@ -186,6 +188,22 @@ public class Bills {
 
 	public void setCounters(Counters counters) {
 		this.counters = counters;
+	}
+
+	public double getHotWater() {
+		return hotWater;
+	}
+
+	public void setHotWater(double hotWater) {
+		this.hotWater = hotWater;
+	}
+
+	public double getHotWaterValue() {
+		return hotWaterValue;
+	}
+
+	public void setHotWaterValue(double hotWaterValue) {
+		this.hotWaterValue = hotWaterValue;
 	}
 
 	

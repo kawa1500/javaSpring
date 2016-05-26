@@ -11,7 +11,6 @@ import com.spoldzielnia.app.dao.BillsDAO;
 import com.spoldzielnia.app.dao.CounterDAO;
 import com.spoldzielnia.app.dao.UserDAO;
 import com.spoldzielnia.app.model.Counters;
-import com.spoldzielnia.app.model.Flat;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.model.UserRole;
 

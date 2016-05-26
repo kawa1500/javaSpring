@@ -18,6 +18,7 @@ public class Prices {
 	private int idPrices;
 	
 	private double water;
+	private double hotWater;
 	private double gas;
 	private double current;
 	private double energy;
@@ -27,6 +28,7 @@ public class Prices {
 	private double other;
 	private int status;
 	private double rWater;
+	private double rHotWater;
 	private double rGas;
 	private double rCurrent;
 	private double rEnergy;
@@ -123,5 +125,17 @@ public class Prices {
 	}
 	public void setrEnergy(double rEnergy) {
 		this.rEnergy = rEnergy;
+	}
+	public double getHotWater() {
+		return hotWater;
+	}
+	public void setHotWater(double hotWater) {
+		this.hotWater = hotWater;
+	}
+	public double getrHotWater() {
+		return rHotWater;
+	}
+	public void setrHotWater(double rHotWater) {
+		this.rHotWater = rHotWater;
 	}
 }

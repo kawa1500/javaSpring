@@ -21,6 +21,11 @@
         <td><form:errors path="water"/></td>
     </tr>
     <tr>
+        <td><form:label path="hotWater"><spring:message code="price.hotwater"/> zł/m3</form:label></td>
+        <td><form:input path="hotWater" /></td>
+        <td><form:errors path="hotWater"/></td>
+    </tr>
+    <tr>
         <td><form:label path="gas"><spring:message code="price.gas"/> zł/m3</form:label></td>
         <td><form:input path="gas" /></td>
         <td><form:errors path="gas"/></td>
@@ -61,6 +66,11 @@
 		<td><form:errors path="rWater"/></td>
 	</tr>
 	<tr>
+		<td><form:label path="rHotWater"><spring:message code="price.ryczalt.hotwater"/></form:label></td>
+		<td><form:input path="rHotWater" /></td>
+		<td><form:errors path="rHotWater"/></td>
+	</tr>
+	<tr>
 		<td><form:label path="rGas"><spring:message code="price.ryczalt.gas"/></form:label></td>
 		<td><form:input path="rGas" /></td>
 		<td><form:errors path="rGas"/></td>
@@ -85,6 +95,7 @@
 <table style="width: 100%">
 <tr>
     <th><spring:message code="price.water"/></th>
+    <th><spring:message code="price.hotwater"/></th>
     <th><spring:message code="price.gas"/></th>
     <th><spring:message code="price.current"/></th>
     <th><spring:message code="price.energy"/></th>
@@ -93,6 +104,7 @@
     <th><spring:message code="price.sewage"/></th>
     <th><spring:message code="price.other"/></th>
     <th><spring:message code="price.ryczalt.water"/></th>
+    <th><spring:message code="price.ryczalt.hotwater"/></th>
     <th><spring:message code="price.ryczalt.gas"/></th>
     <th><spring:message code="price.ryczalt.current"/></th>
     <th><spring:message code="price.ryczalt.energy"/></th>
@@ -101,6 +113,7 @@
 <c:forEach items="${priceList}" var="prices">
     <tr>
         <td align="center">${prices.water} </td>
+        <td align="center">${prices.hotWater} </td>
         <td align="center">${prices.gas} </td>
         <td align="center">${prices.current} </td>
         <td align="center">${prices.energy} </td>
@@ -109,6 +122,7 @@
         <td align="center">${prices.sewage} </td>
         <td align="center">${prices.other} </td>
         <td align="center">${prices.rWater} </td>
+        <td align="center">${prices.rHotWater} </td>
         <td align="center">${prices.rGas} </td>
         <td align="center">${prices.rCurrent} </td>
         <td align="center">${prices.rEnergy} </td>

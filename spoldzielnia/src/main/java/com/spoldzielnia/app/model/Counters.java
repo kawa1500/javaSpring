@@ -23,6 +23,7 @@ public class Counters {
 	private int idCounter;
 	
 	private double water;
+	private double hotWater;
 	private double gas;
 	private double current;
 	private double energy;
@@ -118,6 +119,14 @@ public class Counters {
 
 	public void setBills(Bills bills) {
 		this.bills = bills;
+	}
+
+	public double getHotWater() {
+		return hotWater;
+	}
+
+	public void setHotWater(double hotWater) {
+		this.hotWater = hotWater;
 	}
 
 

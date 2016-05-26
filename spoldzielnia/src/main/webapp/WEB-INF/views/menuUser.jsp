@@ -25,6 +25,7 @@
 		<tr><td><a href="/app/admin/manageFlat"><spring:message code="menu.manageFlat"/></a></td></tr>
 		<tr><td><a href="/app/admin/prices"><spring:message code="menu.admin.price"/></a></td></tr>
 		<tr><td><a href="/app/admin/bills"><spring:message code="bills.menu"/></a></td></tr>
+		<tr><td><a href="/app/admin/countersVerify"><spring:message code="menu.admin.verify"/></a></td></tr>
 	</sec:authorize>
 	<sec:authorize ifAllGranted="ROLE_USER">
   		<tr><td><a href="/app/user/changePassword"><spring:message code="user.change"/></a></td></tr>

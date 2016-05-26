@@ -16,6 +16,17 @@
         <td><form:hidden path="idCounter"/>
     </tr>
     <tr>
+        <td><form:label path="user"><spring:message code="flat.info"/></form:label></td>
+        <td>
+			<form:select path="user" multiple="false">
+				<c:forEach var="user" items="${userList}" >
+        			<option value="${user.idUser}" label="${user.flat.building.buildingCity} ${user.flat.building.buildingStreet} ${user.flat.building.buildingNumber} ${user.flat.flatNumber}"/>
+    			</c:forEach>
+			</form:select>
+		</td>
+        <td><form:errors path="user"/></td>
+    </tr>
+    <tr>
         <td><form:label path="water"><spring:message code="price.water"/> m3</form:label></td>
         <td><form:input path="water" /></td>
         <td><form:errors path="water"/></td>
@@ -36,6 +47,11 @@
         <td><form:errors path="current"/></td>
     </tr>
     <tr>
+        <td><form:label path="energy"><spring:message code="price.energy"/> kWh</form:label></td>
+        <td><form:input path="energy" /></td>
+        <td><form:errors path="energy"/></td>
+    </tr>
+    <tr>
         <td>
         	<c:if test="${update==true}">
             	<input class="myButton" type="submit" value="<spring:message code="price.submit"/>"/>
@@ -44,27 +60,5 @@
     </tr>
 </table> 
 </form:form>
-<table style="width: 100%">
-<tr>
-    <th><spring:message code="price.water"/></th>
-    <th><spring:message code="price.hotwater"/></th>
-    <th><spring:message code="price.gas"/></th>
-    <th><spring:message code="price.current"/></th>
-    <th><spring:message code="price.energy"/></th>
-    <th><spring:message code="counter.ryczalt"/></th>
-    <th><spring:message code="price.date"/></th>
-</tr>
-<c:forEach items="${counterList}" var="counters">
-    <tr>
-        <td align="center">${counters.water} </td>
-        <td align="center">${counters.hotWater} </td>
-        <td align="center">${counters.gas} </td>
-        <td align="center">${counters.current} </td>
-        <td align="center">${counters.energy} </td>
-        <td align="center">${counters.ryczalt} </td>
-        <td align="center">${counters.modDate} </td>
-    </tr>
-</c:forEach>
-</table>
 </body>
 </html>

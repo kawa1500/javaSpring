@@ -68,6 +68,7 @@ public class CronController {
 		counter.setEnergy(lastCounter.getEnergy()+actualPrices.getrEnergy());
 		counter.setGas(lastCounter.getGas()+actualPrices.getrGas());
 		counter.setWater(lastCounter.getWater()+actualPrices.getrWater());
+		counter.setHotWater(lastCounter.getHotWater()+actualPrices.getrHotWater());
 		
 		counterService.addCounter(counter);
 	}
@@ -82,9 +83,11 @@ public class CronController {
 		myBill.setStatus(1);
 		myBill.setCurrentValue(counter.getCurrent()-lastCounterValue.getCurrent());
 		myBill.setWaterValue(counter.getWater()-lastCounterValue.getWater());
+		myBill.setHotWaterValue(counter.getHotWater()-lastCounterValue.getHotWater());
 		myBill.setGasValue(counter.getGas()-lastCounterValue.getGas());
 		myBill.setEnergyValue(counter.getEnergy()-lastCounterValue.getEnergy());
 		myBill.setWater(zaokraglij(actualPrice.getWater()*myBill.getWaterValue()));
+		myBill.setHotWater(zaokraglij(actualPrice.getHotWater()*myBill.getHotWaterValue()));
 		myBill.setCurrent(zaokraglij(actualPrice.getCurrent()*myBill.getCurrentValue()));
 		myBill.setGas(zaokraglij(actualPrice.getGas()*myBill.getGasValue()));
 		myBill.setEnergy(zaokraglij(actualPrice.getEnergy()*myBill.getEnergyValue()));

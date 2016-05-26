@@ -45,13 +45,13 @@ public class ManageUsersController {
 	public String viewCreateUser(Map<String,Object> map,HttpServletRequest request ) {
 		int userID = ServletRequestUtils.getIntParameter(request, "idUser", -1);
 		User user;
-		
+		List<Flat> flatList=getFlatforUSer();
 		//je¿eli jest ID to znaczy ¿e bêdzie edycja 
 		if(userID>0)
 		{
 			user=userService.getUser(userID);
 			user.setPassword("");
-			
+			flatList.add(user.getFlat());
 			System.out.println("ILOSC Ról: "+user.getUserRole().size());	}
 		else
 		{
@@ -59,7 +59,7 @@ public class ManageUsersController {
 		}			
 			
 		map.put("userRoleList",userService.listUserRole());
-		map.put("flatList", getFlatforUSer());
+		map.put("flatList", flatList);
 		map.put("user", user);
 		
 		return "createUser";

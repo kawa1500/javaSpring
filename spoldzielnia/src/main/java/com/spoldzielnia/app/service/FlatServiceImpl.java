@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spoldzielnia.app.dao.FlatDAO;
 import com.spoldzielnia.app.dao.UserDAO;
 import com.spoldzielnia.app.model.Flat;
-import com.spoldzielnia.app.model.User;
 
 @Service
 public class FlatServiceImpl implements FlatService{
