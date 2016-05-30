@@ -12,9 +12,10 @@
 	<context:annotation-config />
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" lazy-init="true">
 		<beans:property name="driverClassName" value="org.postgresql.Driver" />
-		<beans:property name="url" value="jdbc:postgresql://localhost:5433/spoldzielnia?characterEncoding=utf-8" />
+		<beans:property name="url" value="jdbc:postgresql://localhost:5435/spoldzielnia?characterEncoding=utf-8" />
 		<beans:property name="username" value="postgres" />
-		<beans:property name="password" value="damawuWimu#" />
+		<beans:property name="password" value="qwerty" />
+		
 	</beans:bean>
 	<beans:bean id="hibernateSessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">

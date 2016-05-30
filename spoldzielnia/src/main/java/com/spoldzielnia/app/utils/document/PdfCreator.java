@@ -7,8 +7,10 @@ import java.io.OutputStream;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -27,14 +29,18 @@ public class PdfCreator {
             PdfWriter.getInstance(document, file);
 
             document.open();
-            document.add(new Paragraph("Data: "+bill.getModDate()));
-            document.add(new Paragraph("Spó³dzielnia mieszkaniowa SPRING"));
-            document.add(new Paragraph("£ódŸ, Sienkiewicza 175"));
-            document.add(new Paragraph("91-412 £ódŸ"));
-            document.add(new Paragraph("Telefon : +48 42 632 00 00"));
-            document.add(new Paragraph("E-mail: biuro@sping.com"));
 
-            document.addAuthor("Spoldzielnia mieszkaniowa");
+            Font bigFont = FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 12);
+            Font bigFont1 = FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 22, Font.BOLD);
+            
+            document.add(new Paragraph("Data: "+bill.getModDate()));
+            document.add(new Paragraph("Spó³dzielnia mieszkaniowa SPRING", bigFont));
+            document.add(new Paragraph("£ódŸ, Sienkiewicza 175",bigFont));
+            document.add(new Paragraph("91-412 £ódŸ",bigFont));
+            document.add(new Paragraph("Telefon : +48 42 632 00 00" , bigFont));
+            document.add(new Paragraph("E-mail: biuro@sping.com" , bigFont));
+
+            document.addAuthor("Spó³dzielnia mieszkaniowa");
             document.addCreationDate();
             document.addCreator("Spoldzielnia mieszkaniowa");
             document.addTitle("Bills"+bill.getIdBills());
@@ -61,23 +67,23 @@ public class PdfCreator {
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
 
-            cell1 = new PdfPCell(new Phrase("Nazwa op³aty"));
+            cell1 = new PdfPCell(new Phrase("Nazwa op³aty" ,bigFont));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
 
-            cell1 = new PdfPCell(new Phrase("Iloœæ"));
+            cell1 = new PdfPCell(new Phrase("Iloœæ" , bigFont));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
             
-            cell1 = new PdfPCell(new Phrase("Jedn."));
+            cell1 = new PdfPCell(new Phrase("Jedn." , bigFont));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
             
-            cell1 = new PdfPCell(new Phrase("Cena jedn."));
+            cell1 = new PdfPCell(new Phrase("Cena jedn." , bigFont));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
             
-            cell1 = new PdfPCell(new Phrase("Cena ca³kowita"));
+            cell1 = new PdfPCell(new Phrase("Cena ca³kowita" , bigFont));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             pdfTable.addCell(cell1);
             
@@ -149,8 +155,7 @@ public class PdfCreator {
 
             document.add(pdfTable);
             
-            Paragraph paragraph3 = new Paragraph("Cena ca³kowita :"+bill.getCost()+" z³",new Font(Font.FontFamily.TIMES_ROMAN, 22,
-            	      Font.BOLD));
+            Paragraph paragraph3 = new Paragraph("Cena ca³kowita :"+bill.getCost()+" z³", bigFont1);
               paragraph3.setAlignment(Paragraph.ALIGN_CENTER);
               document.add(paragraph3);
             document.close();
