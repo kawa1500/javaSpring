@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,17 +15,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.spoldzielnia.app.model.Bills;
+import com.spoldzielnia.app.model.Pay;
 import com.spoldzielnia.app.model.User;
 import com.spoldzielnia.app.service.BillsService;
 import com.spoldzielnia.app.service.PriceService;
 import com.spoldzielnia.app.service.UserService;
 import com.spoldzielnia.app.utils.document.PdfCreator;
+
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 
 
 /**
@@ -42,6 +52,8 @@ public class BillsController {
 	@Autowired
 	PriceService priceService;
 	
+	@Autowired
+	ReCaptchaImpl reCaptcha;
 	
 	@RequestMapping(value = "/user/bills", method = RequestMethod.GET)
 	public String viewCounters(Map<String,Object> map,HttpServletRequest request ) {
@@ -83,15 +95,31 @@ public class BillsController {
 	}
 	
 	@RequestMapping (value = "/user/pay", method = RequestMethod.GET)
-	public String placenie(HttpServletRequest request){
-		int idBills = ServletRequestUtils.getIntParameter(request, "idBill", -1);
-		Bills bb = billsService.get(idBills);
-		bb.setStatus(2);
-		billsService.edit(bb);
-		
-		return "redirect:bills";
+	public String placenie(Map<String,Object> map, HttpServletRequest request){
+		return "pay";
 	}
 	
+	@RequestMapping (value = "/user/pay", method = RequestMethod.POST)
+	public String placenieRachunku(HttpServletRequest request, HttpServletResponse response){
+		String reCaptchaChallenge = request.getParameter("recaptcha_challenge_field");
+        String reCaptchaResponse = request.getParameter("recaptcha_response_field");
+        String remoteAddress = request.getRemoteAddr();
+		ReCaptchaResponse myRe = reCaptcha.checkAnswer(remoteAddress, reCaptchaChallenge, reCaptchaResponse);
+ 
+		if(myRe.isValid()){
+			System.out.println("Zweryfikowano prawid³owo!!!!");
+			int idBills = ServletRequestUtils.getIntParameter(request, "idBill", -1);
+			Bills bb = billsService.get(idBills);
+			bb.setStatus(2);
+			billsService.edit(bb);
+			return "redirect:bills";
+		} else {
+			System.out.println("B³êdnie zweryfikowano!!!!");	
+			return "pay";
+		}		
+		
+		
+	}
 	private User getIdUser()
 	{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -95,5 +95,8 @@
         <put-attribute name="body" value="/WEB-INF/views/countersVerify.jsp" />
     </definition>
     
-    
+    <definition name="pay" extends="base.definition">
+        <put-attribute name="title" value="Pay your bills" />
+        <put-attribute name="body" value="/WEB-INF/views/pay.jsp" />
+    </definition>
 </tiles-definitions>
