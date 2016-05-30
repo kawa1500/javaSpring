@@ -65,4 +65,7 @@
 	   <task:annotation-driven />
     <beans:bean id="demoServiceBasicUsageCron" class="com.spoldzielnia.app.controller.CronController"/>
 	
+	<beans:bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+		<beans:property name="privateKey" value="6LcW3OASAAAAAKVX2duVsSy2uMMHL105-jPDrHMD"/>
+	</beans:bean>
 </beans:beans>
