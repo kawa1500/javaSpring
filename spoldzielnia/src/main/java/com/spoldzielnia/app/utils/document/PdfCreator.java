@@ -33,7 +33,7 @@ public class PdfCreator {
             Font bigFont = FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 12);
             Font bigFont1 = FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 22, Font.BOLD);
             
-            document.add(new Paragraph("Data: "+bill.getModDate()));
+            document.add(new Paragraph("Data: "+bill.getModDate(), bigFont));
             document.add(new Paragraph("SpÛ≥dzielnia mieszkaniowa SPRING", bigFont));
             document.add(new Paragraph("£Ûdü, Sienkiewicza 175",bigFont));
             document.add(new Paragraph("91-412 £Ûdü",bigFont));
@@ -90,66 +90,66 @@ public class PdfCreator {
             pdfTable.setHeaderRows(1);
 
             //water
-            pdfTable.addCell("1");
-            pdfTable.addCell("Woda");
+            pdfTable.addCell(new Phrase("1", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Woda", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getWaterValue());
-            pdfTable.addCell("m3");
+            pdfTable.addCell(new Phrase("m3", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getWater());
             pdfTable.addCell(""+bill.getWater());
             
           //current
-            pdfTable.addCell("2");
-            pdfTable.addCell("Prπd");
+            pdfTable.addCell(new Phrase("2", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Prπd", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getCurrentValue());
-            pdfTable.addCell("kWh");
+            pdfTable.addCell(new Phrase("kWh", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getCurrent());
             pdfTable.addCell(""+bill.getCurrent());
             
           //gas
-            pdfTable.addCell("3");
-            pdfTable.addCell("Gaz");
+            pdfTable.addCell(new Phrase("3", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Gaz", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getGasValue());
-            pdfTable.addCell("m3");
+            pdfTable.addCell(new Phrase("m3", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getGas());
             pdfTable.addCell(""+bill.getGas());
             
           //energy
-            pdfTable.addCell("4");
-            pdfTable.addCell("Ogrzewanie");
+            pdfTable.addCell(new Phrase("4", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Ogrzewanie", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getEnergyValue());
-            pdfTable.addCell("kJ");
+            pdfTable.addCell(new Phrase("Prπd", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getEnergy());
             pdfTable.addCell(""+bill.getEnergy());
             
           //intercom
-            pdfTable.addCell("5");
-            pdfTable.addCell("Domofon");
+            pdfTable.addCell(new Phrase("5", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Domofon", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getOsoby());
-            pdfTable.addCell("os.");
+            pdfTable.addCell(new Phrase("os.", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getIntercom());
             pdfTable.addCell(""+bill.getIntercom());
             
           //trash
-            pdfTable.addCell("6");
-            pdfTable.addCell("åmieci");
+            pdfTable.addCell(new Phrase("6", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("åmieci", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getOsoby());
-            pdfTable.addCell("os.");
+            pdfTable.addCell(new Phrase("os.", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getTrash());
             pdfTable.addCell(""+bill.getTrash());
 
           //sewage
-            pdfTable.addCell("7");
-            pdfTable.addCell("åcieki");
+            pdfTable.addCell(new Phrase("7", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("åcieki", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getWaterValue());
-            pdfTable.addCell("m3");
+            pdfTable.addCell(new Phrase("m3", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getSewage());
             pdfTable.addCell(""+bill.getSewage());
 
           //other
-            pdfTable.addCell("8");
-            pdfTable.addCell("Inne koszty");
+            pdfTable.addCell(new Phrase("8", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
+            pdfTable.addCell(new Phrase("Inne Koszty", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+bill.getOsoby());
-            pdfTable.addCell("os.");
+            pdfTable.addCell(new Phrase("os.", FontFactory.getFont(BaseFont.TIMES_ROMAN, BaseFont.CP1257, 11)));
             pdfTable.addCell(""+price.getOther());
             pdfTable.addCell(""+bill.getOther());
 
