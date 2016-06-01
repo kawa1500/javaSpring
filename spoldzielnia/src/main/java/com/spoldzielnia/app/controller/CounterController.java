@@ -160,7 +160,7 @@ public class CounterController {
 		myBill.setCounters(counter);
 		myBill.setModDate(new Date());
 		billService.add(myBill);
-		SendingMail mailSend = new SendingMail("en");
+		SendingMail mailSend = new SendingMail();
 		mailSend.createBill(myBill, PdfCreator.Generate(myBill,actualPrice), counter.getUser().getEmail());
 	}
 	

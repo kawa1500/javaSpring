@@ -10,11 +10,9 @@ import com.spoldzielnia.app.model.User;
 public class SendingMail {
 
 	private MailMail myMail;
-	private String language = "en";
 	
-	public SendingMail(String language)
+	public SendingMail()
 	{
-		this.language = language;
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-mail.xml");
     	myMail = (MailMail) context.getBean("mailMail");

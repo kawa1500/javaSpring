@@ -57,7 +57,7 @@ public class UserController {
 				myUser.setPassword(user.getNewPassword());
 				myUser.setPassword(userService.hashPassword(myUser.getPassword()));
 				userService.editUser(myUser);
-				SendingMail mailSend = new SendingMail("en");
+				SendingMail mailSend = new SendingMail();
 				mailSend.changePassword(user, myUser.getEmail());
 				return "user";
 			}

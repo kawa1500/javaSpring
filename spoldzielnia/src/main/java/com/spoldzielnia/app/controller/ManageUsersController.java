@@ -70,7 +70,6 @@ public class ManageUsersController {
 	public String addUser(@ModelAttribute("user") User user, Model model,Map<String,Object> map, BindingResult result, HttpServletRequest request) {
 		
 		userValidator.validate(user, result);
-		String language = request.getLocale().toString();
 		if(result.getErrorCount()==0)
 		{
 			if (user.getIdUser()==0)
@@ -85,9 +84,8 @@ public class ManageUsersController {
 				}
 				else
 				{
-					SendingMail mailSend = new SendingMail(language);
+					SendingMail mailSend = new SendingMail();
 					mailSend.createUser(user);
-					System.out.println("JEEEEEEEZYK: "+language);
 					userService.addUser(user);
 					return "redirect:manageUsers";
 				}	
